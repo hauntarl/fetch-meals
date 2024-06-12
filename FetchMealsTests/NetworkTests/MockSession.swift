@@ -8,12 +8,20 @@
 import FetchMeals
 import Foundation
 
-struct MockSession: Session {
-    var data: Data = .init()
-    var response: URLResponse = .init()
-    var error: Error? = nil
+final class MockSession: Session {
+    private let data: Data
+    private let response: URLResponse
+    private let error: Error?
     
-    init() {}
+    init(
+        data: Data = .init(), 
+        response: URLResponse = .init(),
+        error: Error? = nil
+    ) {
+        self.data = data
+        self.response = response
+        self.error = error
+    }
     
     func data(
         for request: URLRequest,
