@@ -10,13 +10,16 @@ import Foundation
 
 final class MockNetworkProvider: Network {
     let session: any Session
+    let decoder: JSONDecoder
     let error: Error?
     
     init(
         session: any Session,
+        decoder: JSONDecoder = .init(),
         error: Error? = nil
     ) {
         self.session = session
+        self.decoder = decoder
         self.error = error
     }
     

@@ -10,24 +10,25 @@ import Foundation
 public final class NetworkProvider: Network {
     public static let shared = NetworkProvider(
         session: URLSession.shared,
-        baseURL: .init(string: "https://themealdb.com/api/json/v1/1/"),
-        decoder: .init()
+        decoder: .init(),
+        baseURL: .init(string: "https://themealdb.com/api/json/v1/1/")
     )
     
     public let session: Session
-    public let baseURL: URL?
     public let decoder: JSONDecoder
+    public let baseURL: URL?
     
     public init(
         session: Session,
-        baseURL: URL?,
-        decoder: JSONDecoder
+        decoder: JSONDecoder,
+        baseURL: URL?
     ) {
         self.session = session
-        self.baseURL = baseURL
         self.decoder = decoder
+        self.baseURL = baseURL
     }
     
+    /// Executes an HTTP GET request to fetch meals for the provided category.
     public func fetchMeals(for category: String) async throws -> [MealItem] {
         let params: [URLQueryItem] = [
             .init(name: "c", value: category)
@@ -38,10 +39,14 @@ public final class NetworkProvider: Network {
             queryItems: params
         )
         
-        let result: MealItemWrapper = try await fetch(from: url)
+        let result: MealItemWrapper = try await fetch(
+            from: url,
+            headers: ["Accept": "application/json"]
+        )
         return result.meals
     }
     
+    /// Executes an HTTP GET request to fetch meal details for the provided meal id.
     public func fetchMealDetails(for id: String) async throws -> Meal {
         let params: [URLQueryItem] = [
             .init(name: "i", value: id)
@@ -52,27 +57,13 @@ public final class NetworkProvider: Network {
             queryItems: params
         )
         
-        let result: MealWrapper = try await fetch(from: url)
+        let result: MealWrapper = try await fetch(
+            from: url,
+            headers: ["Accept": "application/json"]
+        )
         guard let meal = result.meals.first else {
             throw NetworkError.missingData
         }
         return meal
-    }
-    
-    private func fetch<Result>(from url: URL) async throws -> Result where Result : Decodable {
-        var request = URLRequest(url: url)
-        request.httpMethod = Http.Request.get
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let (data, response) = try await execute(request: request)
-        guard response.statusCode == Http.Status.ok else {
-            throw NetworkError.unexpectedResponse(
-                statusCode: response.statusCode,
-                description: response.description
-            )
-        }
-        
-        let result = try decoder.decode(Result.self, from: data)
-        return result
     }
 }

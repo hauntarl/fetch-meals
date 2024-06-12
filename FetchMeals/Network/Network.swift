@@ -14,22 +14,40 @@ public protocol Network {
     /// The current session that is responsible for communicating with the APIs.
     var session: Session { get }
     
+    /// The current decoder that is responsible for parsing the retrieved response.
+    var decoder: JSONDecoder { get }
+    
+    /// Utility method that builds a URL from given path and query parameters.
+    func buildURL(for path: String, relativeTo baseURL: URL?, queryItems: [URLQueryItem]) throws -> URL
+
     /// Executes provided request, performs verification against errors,
     /// returns response data and associated meta data.
     func execute(request: URLRequest) async throws -> (Data, HTTPURLResponse)
     
-    /// Utility method that builds a URL from given path and query parameters.
-    func buildURL(for path: String, relativeTo url: URL?, queryItems: [URLQueryItem]) throws -> URL
+    /// Executes an HTTP GET request using the provided url.
+    func fetch<Result>(from url: URL, headers: [String: String]) async throws -> Result where Result : Decodable
     
-    /// Executes an HTTP GET request to fetch meals for the provided category
+    /// Executes an HTTP GET request to fetch meals for the provided category.
     func fetchMeals(for category: String) async throws -> [MealItem]
     
-    /// Executes an HTTP GET request to fetch meal details for the provided meal id
+    /// Executes an HTTP GET request to fetch meal details for the provided meal id.
     func fetchMealDetails(for id: String) async throws -> Meal
     
 }
 
 public extension Network {
+    // Default implementation for the generic buildURL method, other methods of
+    // this protocol may use this to generate API endpoints.
+    func buildURL(for path: String, relativeTo baseURL: URL?, queryItems: [URLQueryItem]) throws -> URL {
+        guard let baseURL, var url = URL(string: path, relativeTo: baseURL) else {
+            throw NetworkError.malformedURL
+        }
+        if !queryItems.isEmpty {
+            url.append(queryItems: queryItems)
+        }
+        return url
+    }
+
     // Default implementation for the generic execute method, other methods of
     // this protocol may use this to execute an HTTP request.
     func execute(request: URLRequest) async throws -> (Data, HTTPURLResponse) {
@@ -51,16 +69,25 @@ public extension Network {
         return (data, response)
     }
     
-    // Default implementation for the generic buildURL method, other methods of
-    // this protocol may use this to generate API endpoints.
-    func buildURL(for path: String, relativeTo url: URL?, queryItems: [URLQueryItem]) throws -> URL {
-        guard let url, var url = URL(string: path, relativeTo: url) else {
-            throw NetworkError.malformedURL
+    // Default implementation for the generic fetch method, other methods of
+    // this protocol may use this to execute an HTTP GET request.
+    func fetch<Result>(from url: URL, headers: [String: String]) async throws -> Result where Result : Decodable {
+        var request = URLRequest(url: url)
+        request.httpMethod = Http.Request.get
+        
+        for (field, value) in headers {
+            request.setValue(value, forHTTPHeaderField: field)
         }
-        if !queryItems.isEmpty {
-            url.append(queryItems: queryItems)
+        
+        let (data, response) = try await execute(request: request)
+        guard response.statusCode == Http.Status.ok else {
+            throw NetworkError.unexpectedResponse(
+                statusCode: response.statusCode
+            )
         }
-        return url
+        
+        let result = try decoder.decode(Result.self, from: data)
+        return result
     }
 }
 
@@ -69,7 +96,7 @@ public enum NetworkError: Error {
     case malformedURL
     case unknown(description: String)
     case http(statusCode: Int, description: String)
-    case unexpectedResponse(statusCode: Int, description: String)
+    case unexpectedResponse(statusCode: Int)
     case missingData
 }
 
