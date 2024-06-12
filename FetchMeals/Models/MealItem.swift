@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// `MealItem` model is used to display result of querying meals from
-/// [themealdb.com](https://themealdb.com/api.php)
+/// Stores the result of querying meals from 
+/// [themealdb.com](https://themealdb.com/api.php).
 public struct MealItem: Decodable, Identifiable, Equatable {
     public let id: String
     public let name: String
@@ -21,7 +21,7 @@ public struct MealItem: Decodable, Identifiable, Equatable {
     }
     
     /// A custom decoder that efficiently maps json response to respective Swift objects.
-    /// This is done to avoid creation of intermediate data models.
+    /// This is done to clean the response and avoid creation of intermediate data models.
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

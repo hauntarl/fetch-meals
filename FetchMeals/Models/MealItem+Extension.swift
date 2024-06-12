@@ -1,5 +1,5 @@
 //
-//  Samples.swift
+//  MealItem+Extension.swift
 //  FetchMeals
 //
 //  Created by Sameer Mungole on 6/11/24.
@@ -114,3 +114,4 @@ extension MealItemWrapper {
     }
     """.data(using: .utf8)!
 }
+
