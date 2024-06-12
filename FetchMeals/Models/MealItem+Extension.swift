@@ -9,7 +9,7 @@
 
 import Foundation
 
-extension MealItem {
+public extension MealItem {
     static var sample: Self = {
         try! JSONDecoder().decode(Self.self, from: sampleJSON)
     }()
@@ -47,7 +47,7 @@ extension MealItem {
     """.data(using: .utf8)!
 }
 
-extension MealItemWrapper {
+public extension MealItemWrapper {
     static var sample: Self = {
         try! JSONDecoder().decode(Self.self, from: sampleJSON)
     }()
@@ -114,4 +114,3 @@ extension MealItemWrapper {
     }
     """.data(using: .utf8)!
 }
-

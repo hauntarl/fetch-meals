@@ -9,7 +9,7 @@
 
 import Foundation
 
-extension Meal {
+public extension Meal {
     static var sample: Self = {
         try! JSONDecoder().decode(MealWrapper.self, from: sampleJSON).meals.first!
     }()
