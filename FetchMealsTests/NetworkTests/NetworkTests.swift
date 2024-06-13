@@ -9,8 +9,6 @@ import FetchMeals
 import XCTest
 
 final class NetworkTests: XCTestCase {
-    private static let fetchURL = URL(string: "https://fetch.com/")!
-    
     private var session: Session!
     private var network: Network!
 
@@ -20,14 +18,14 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test successful `buildURL` request, aims to run the protocol's default implementation
-    func testBuildURLSuccess() throws {
+    func testBuildURL_Success() throws {
         session = MockSession()
         network = MockNetworkProvider(session: session)
-        let expected = "\(Self.fetchURL.absoluteString)new-hire/sameer-mungole"
+        let expected = "\(NetworkURL.base.absoluteString)new-hire/sameer-mungole"
         
         let got = try network.buildURL(
             for: "new-hire/sameer-mungole",
-            relativeTo: Self.fetchURL,
+            relativeTo: NetworkURL.base,
             queryItems: []
         )
         
@@ -35,7 +33,7 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test build url when provided query parameters, aims to run the protocol's default implementation
-    func testBuildURLWithQueryParameters() throws {
+    func testBuildURL_Success_WithQueryParameters() throws {
         session = MockSession()
         network = MockNetworkProvider(session: session)
         let baseURL = URL(string: "https://themealdb.com/api/json/v1/1/")
@@ -53,7 +51,7 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test malformed url error response, aims to run the protocol's default implementation
-    func testBuildURLFailure() throws {
+    func testBuildURL_MalformedURL() throws {
         session = MockSession()
         network = MockNetworkProvider(session: session)
         
@@ -71,12 +69,12 @@ final class NetworkTests: XCTestCase {
     }
 
     /// Test successful `execute` request, aims to run the protocol's default implementation
-    func testExecuteSuccess() async throws {
+    func testExecute_Success() async throws {
         let expected = MealItem.sample
         session = MockSession(
             data: MealItem.sampleJSON,
             response: HTTPURLResponse(
-                url: Self.fetchURL,
+                url: NetworkURL.base,
                 statusCode: Http.Status.ok,
                 httpVersion: nil,
                 headerFields: nil
@@ -84,7 +82,7 @@ final class NetworkTests: XCTestCase {
         )
         network = MockNetworkProvider(session: session)
         
-        let request = URLRequest(url: Self.fetchURL)
+        let request = URLRequest(url: NetworkURL.base)
         let (data, response) = try await network.execute(request: request)
         
         XCTAssertEqual(response.statusCode, Http.Status.ok, "Response status code should match.")
@@ -94,12 +92,12 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test session throws error, aims to run the protocol's default implementation
-    func testExecuteFailure() async throws {
+    func testExecute_SessionError() async throws {
         session = MockSession(error: NetworkError.malformedURL)
         network = MockNetworkProvider(session: session)
         
         do {
-            let request = URLRequest(url: Self.fetchURL)
+            let request = URLRequest(url: NetworkURL.base)
             _ = try await network.execute(request: request)
         } catch NetworkError.malformedURL {
             return
@@ -108,12 +106,12 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test unknown `URLResponse`, aims to run the protocol's default implementation
-    func testExecuteUnexpectedResponse() async throws {
+    func testExecute_UnknownError() async throws {
         session = MockSession()
         network = MockNetworkProvider(session: session)
         
         do {
-            let request = URLRequest(url: Self.fetchURL)
+            let request = URLRequest(url: NetworkURL.base)
             _ = try await network.execute(request: request)
         } catch NetworkError.unknown(_) {
             return
@@ -122,10 +120,10 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test http error response, aims to run the protocol's default implementation
-    func testExecuteHttpError() async throws {
+    func testExecute_HttpError() async throws {
         let errorCode = Http.Status.errors.randomElement()!
         session = MockSession(response: HTTPURLResponse(
-            url: Self.fetchURL,
+            url: NetworkURL.base,
             statusCode: errorCode,
             httpVersion: nil,
             headerFields: nil
@@ -133,7 +131,7 @@ final class NetworkTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         
         do {
-            let request = URLRequest(url: Self.fetchURL)
+            let request = URLRequest(url: NetworkURL.base)
             _ = try await network.execute(request: request)
         } catch NetworkError.http(let statusCode, _) {
             XCTAssertEqual(errorCode, statusCode, "The http status codes should match.")
@@ -143,12 +141,12 @@ final class NetworkTests: XCTestCase {
     }
     
     /// Test successful `fetch` request, aims to run the protocol's default implementation
-    func testFetchSuccess() async throws {
+    func testFetch_Success() async throws {
         let expected = Meal.sample
         session = MockSession(
             data: Meal.sampleJSON,
             response: HTTPURLResponse(
-                url: Self.fetchURL,
+                url: NetworkURL.base,
                 statusCode: Http.Status.ok,
                 httpVersion: nil,
                 headerFields: nil
@@ -156,16 +154,16 @@ final class NetworkTests: XCTestCase {
         )
         network = MockNetworkProvider(session: session)
         
-        let got: MealWrapper = try await network.fetch(from: Self.fetchURL, headers: [:])
+        let got: MealWrapper = try await network.fetch(from: NetworkURL.base, headers: [:])
         XCTAssertEqual(got.meals.first, expected, "The meal items should be equal.")
     }
     
     /// Test unexpected success status code, aims to run the protocol's default implementation
-    func testFetchFailure() async throws {
+    func testFetch_UnexpectedResponse() async throws {
         session = MockSession(
             data: Meal.sampleJSON,
             response: HTTPURLResponse(
-                url: Self.fetchURL,
+                url: NetworkURL.base,
                 statusCode: Http.Status.noContent,
                 httpVersion: nil,
                 headerFields: nil
@@ -174,10 +172,30 @@ final class NetworkTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         
         do {
-            let _: MealWrapper = try await network.fetch(from: Self.fetchURL, headers: [:])
+            let _: MealWrapper = try await network.fetch(from: NetworkURL.base, headers: [:])
         } catch NetworkError.unexpectedResponse(_) {
             return
         }
         XCTFail("Should never reach here.")
+    }
+    
+    func testFetch_ParsingError() async throws {
+        session = MockSession(
+            data: Data(),
+            response: HTTPURLResponse(
+                url: NetworkURL.base,
+                statusCode: Http.Status.ok,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+        )
+        network = MockNetworkProvider(session: session)
+        
+        do {
+            let _: MealItemWrapper = try await network.fetch(from: NetworkURL.base, headers: [:])
+        } catch DecodingError.dataCorrupted(_) {
+            return
+        }
+        XCTFail("Should never reach here")
     }
 }

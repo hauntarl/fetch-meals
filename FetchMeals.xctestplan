@@ -1,0 +1,44 @@
+{
+  "configurations" : [
+    {
+      "id" : "C491A72F-96AE-483F-9F94-9CBA92B7A557",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "key" : "IDEPreferLogStreaming",
+        "value" : "YES"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:FetchMeals.xcodeproj",
+      "identifier" : "FC8F6A762C190B0E00D9A975",
+      "name" : "FetchMeals"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:FetchMeals.xcodeproj",
+        "identifier" : "FC8F6A862C190B1000D9A975",
+        "name" : "FetchMealsTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:FetchMeals.xcodeproj",
+        "identifier" : "FC8F6A902C190B1000D9A975",
+        "name" : "FetchMealsUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

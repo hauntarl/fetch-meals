@@ -91,6 +91,10 @@ public extension Network {
     }
 }
 
+public struct NetworkURL {
+    public static let base = URL(string: "https://themealdb.com/api/json/v1/1/")!
+}
+
 /// NetworkError enum used for throwing and handling specific network errors.
 public enum NetworkError: Error {
     case malformedURL

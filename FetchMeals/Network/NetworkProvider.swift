@@ -8,20 +8,16 @@
 import Foundation
 
 public final class NetworkProvider: Network {
-    public static let shared = NetworkProvider(
-        session: URLSession.shared,
-        decoder: .init(),
-        baseURL: .init(string: "https://themealdb.com/api/json/v1/1/")
-    )
+    public static let shared = NetworkProvider()
     
     public let session: Session
     public let decoder: JSONDecoder
     public let baseURL: URL?
     
     public init(
-        session: Session,
-        decoder: JSONDecoder,
-        baseURL: URL?
+        session: Session = URLSession.shared,
+        decoder: JSONDecoder = .init(),
+        baseURL: URL? = NetworkURL.base
     ) {
         self.session = session
         self.decoder = decoder
