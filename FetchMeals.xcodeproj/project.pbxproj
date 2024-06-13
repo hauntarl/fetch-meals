@@ -18,11 +18,17 @@
 		FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33C2C194B88000EDBB2 /* NetworkProvider.swift */; };
 		FC4AD33F2C1955DE000EDBB2 /* MockNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */; };
 		FC8F6A7B2C190B0E00D9A975 /* FetchMealsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A7A2C190B0E00D9A975 /* FetchMealsApp.swift */; };
-		FC8F6A7D2C190B0E00D9A975 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A7C2C190B0E00D9A975 /* ContentView.swift */; };
 		FC8F6A7F2C190B1000D9A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8F6A7E2C190B1000D9A975 /* Assets.xcassets */; };
 		FC8F6A822C190B1000D9A975 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8F6A812C190B1000D9A975 /* Preview Assets.xcassets */; };
 		FC8F6A962C190B1000D9A975 /* FetchMealsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A952C190B1000D9A975 /* FetchMealsUITests.swift */; };
 		FC8F6A982C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A972C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift */; };
+		FCF45F082C1A669A0067389C /* MealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F072C1A669A0067389C /* MealsView.swift */; };
+		FCF45F0A2C1A66E60067389C /* MealsView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */; };
+		FCF45F0C2C1A68520067389C /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F0B2C1A68520067389C /* ViewState.swift */; };
+		FCF45F0E2C1A819C0067389C /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F0D2C1A819C0067389C /* NavigationRouter.swift */; };
+		FCF45F102C1A82F40067389C /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F0F2C1A82F40067389C /* RootView.swift */; };
+		FCF45F122C1A84240067389C /* MealDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F112C1A84230067389C /* MealDetailsView.swift */; };
+		FCF45F142C1A90800067389C /* MealDetailsView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F132C1A90800067389C /* MealDetailsView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,13 +61,19 @@
 		FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProvider.swift; sourceTree = "<group>"; };
 		FC8F6A772C190B0E00D9A975 /* FetchMeals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchMeals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8F6A7A2C190B0E00D9A975 /* FetchMealsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsApp.swift; sourceTree = "<group>"; };
-		FC8F6A7C2C190B0E00D9A975 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FC8F6A7E2C190B1000D9A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC8F6A812C190B1000D9A975 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FC8F6A872C190B1000D9A975 /* FetchMealsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchMealsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8F6A912C190B1000D9A975 /* FetchMealsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchMealsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8F6A952C190B1000D9A975 /* FetchMealsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITests.swift; sourceTree = "<group>"; };
 		FC8F6A972C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FCF45F072C1A669A0067389C /* MealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsView.swift; sourceTree = "<group>"; };
+		FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModel.swift"; sourceTree = "<group>"; };
+		FCF45F0B2C1A68520067389C /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		FCF45F0D2C1A819C0067389C /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		FCF45F0F2C1A82F40067389C /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		FCF45F112C1A84230067389C /* MealDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsView.swift; sourceTree = "<group>"; };
+		FCF45F132C1A90800067389C /* MealDetailsView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealDetailsView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +157,9 @@
 			children = (
 				FC4AD3312C192BB3000EDBB2 /* Network */,
 				FC4AD3282C190DC4000EDBB2 /* Models */,
+				FCF45F052C1A664E0067389C /* Views */,
+				FCF45F062C1A66630067389C /* ViewModels */,
 				FC8F6A7A2C190B0E00D9A975 /* FetchMealsApp.swift */,
-				FC8F6A7C2C190B0E00D9A975 /* ContentView.swift */,
 				FC8F6A7E2C190B1000D9A975 /* Assets.xcassets */,
 				FC8F6A802C190B1000D9A975 /* Preview Content */,
 			);
@@ -176,6 +189,27 @@
 				FC8F6A972C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift */,
 			);
 			path = FetchMealsUITests;
+			sourceTree = "<group>";
+		};
+		FCF45F052C1A664E0067389C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FCF45F0F2C1A82F40067389C /* RootView.swift */,
+				FCF45F072C1A669A0067389C /* MealsView.swift */,
+				FCF45F112C1A84230067389C /* MealDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FCF45F062C1A66630067389C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FCF45F0B2C1A68520067389C /* ViewState.swift */,
+				FCF45F0D2C1A819C0067389C /* NavigationRouter.swift */,
+				FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */,
+				FCF45F132C1A90800067389C /* MealDetailsView-ViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,13 +343,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC4AD3332C192C6C000EDBB2 /* Session.swift in Sources */,
+				FCF45F0A2C1A66E60067389C /* MealsView-ViewModel.swift in Sources */,
+				FCF45F0E2C1A819C0067389C /* NavigationRouter.swift in Sources */,
+				FCF45F142C1A90800067389C /* MealDetailsView-ViewModel.swift in Sources */,
+				FCF45F0C2C1A68520067389C /* ViewState.swift in Sources */,
 				FC4AD32E2C19171D000EDBB2 /* Meal.swift in Sources */,
+				FCF45F082C1A669A0067389C /* MealsView.swift in Sources */,
+				FCF45F122C1A84240067389C /* MealDetailsView.swift in Sources */,
 				FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */,
 				FC4AD3352C192DD0000EDBB2 /* Network.swift in Sources */,
 				FC4AD3302C19228E000EDBB2 /* MealItem+Extension.swift in Sources */,
+				FCF45F102C1A82F40067389C /* RootView.swift in Sources */,
 				FC4AD32A2C190FF2000EDBB2 /* MealItem.swift in Sources */,
 				FC4AD32C2C190FFA000EDBB2 /* Meal+Extension.swift in Sources */,
-				FC8F6A7D2C190B0E00D9A975 /* ContentView.swift in Sources */,
 				FC8F6A7B2C190B0E00D9A975 /* FetchMealsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
