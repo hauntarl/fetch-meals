@@ -33,3 +33,5 @@ final class MockSession: Session {
         return (data, response)
     }
 }
+
+struct MockError: Error {}

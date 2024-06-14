@@ -23,6 +23,8 @@
 		FC8F6A962C190B1000D9A975 /* FetchMealsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A952C190B1000D9A975 /* FetchMealsUITests.swift */; };
 		FC8F6A982C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A972C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift */; };
 		FCB4979B2C1BA4FF00ECDBBC /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4979A2C1BA4FF00ECDBBC /* NetworkProviderTests.swift */; };
+		FCB4979F2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */; };
+		FCB497A12C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */; };
 		FCF45F082C1A669A0067389C /* MealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F072C1A669A0067389C /* MealsView.swift */; };
 		FCF45F0A2C1A66E60067389C /* MealsView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */; };
 		FCF45F0C2C1A68520067389C /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F0B2C1A68520067389C /* ViewState.swift */; };
@@ -70,6 +72,8 @@
 		FC8F6A972C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FCB4979A2C1BA4FF00ECDBBC /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
 		FCB4979C2C1BB37D00ECDBBC /* FetchMeals.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FetchMeals.xctestplan; sourceTree = "<group>"; };
+		FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModelTests.swift"; sourceTree = "<group>"; };
+		FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealDetailsView-ViewModelTests.swift"; sourceTree = "<group>"; };
 		FCF45F072C1A669A0067389C /* MealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsView.swift; sourceTree = "<group>"; };
 		FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModel.swift"; sourceTree = "<group>"; };
 		FCF45F0B2C1A68520067389C /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				FC4AD3362C193927000EDBB2 /* NetworkTests */,
+				FCB4979D2C1BB93000ECDBBC /* ViewModelTests */,
 			);
 			path = FetchMealsTests;
 			sourceTree = "<group>";
@@ -194,6 +199,15 @@
 				FC8F6A972C190B1000D9A975 /* FetchMealsUITestsLaunchTests.swift */,
 			);
 			path = FetchMealsUITests;
+			sourceTree = "<group>";
+		};
+		FCB4979D2C1BB93000ECDBBC /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */,
+				FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */,
+			);
+			path = ViewModelTests;
 			sourceTree = "<group>";
 		};
 		FCF45F052C1A664E0067389C /* Views */ = {
@@ -369,8 +383,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCB4979F2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift in Sources */,
 				FC4AD33B2C19398C000EDBB2 /* MockSession.swift in Sources */,
 				FCB4979B2C1BA4FF00ECDBBC /* NetworkProviderTests.swift in Sources */,
+				FCB497A12C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift in Sources */,
 				FC4AD3382C193944000EDBB2 /* NetworkTests.swift in Sources */,
 				FC4AD33F2C1955DE000EDBB2 /* MockNetworkProvider.swift in Sources */,
 			);

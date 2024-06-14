@@ -11,24 +11,26 @@ import SwiftUI
 public extension MealsView {
     @MainActor
     class ViewModel: ObservableObject {
-        @Published var category: MealCategory = .seafood
-        @Published var state: ViewState<[MealItem]> = .loading
+        @Published public var category: MealCategory = .dessert
+        @Published public var state: ViewState<[MealItem]> = .loading
         
         private let network: Network
         
-        init(network: Network = NetworkProvider.shared) {
+        public init(network: Network = NetworkProvider.shared) {
             self.network = network
         }
         
-        func fetchMeals() async {
+        public func fetchMeals() async {
             do {
                 state = .loading
                 let result = try await network.fetchMeals(for: category.rawValue)
                 state = .success(result: result.clean())
             } catch is NetworkError {
-                state = .failure(message: "`Network Error:` Please try again after some time.")
+                state = .failure(message: "Network Error: Please try again after some time")
+            } catch is DecodingError {
+                state = .failure(message: "Parsing Error: Data could not be processed")
             } catch {
-                state = .failure(message: "`Unknown Error:` \(error.localizedDescription)")
+                state = .failure(message: "Error: \(error.localizedDescription)")
             }
         }
     }

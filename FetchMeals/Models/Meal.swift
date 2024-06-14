@@ -77,17 +77,23 @@ public struct Meal: Decodable, Equatable {
         let thumbnail = try container
             .decodeIfPresent(String.self, forKey: .strMealThumb)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.thumbnailURL = URL(string: thumbnail)
+        self.thumbnailURL = !thumbnail.isEmpty
+            ? URL(string: "\(thumbnail)/preview")
+            : nil
         
         let youtube = try container
             .decodeIfPresent(String.self, forKey: .strYoutube)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.youtubeURL = URL(string: youtube)
+        self.youtubeURL = !youtube.isEmpty
+            ? URL(string: youtube)
+            : nil
         
         let source = try container
             .decodeIfPresent(String.self, forKey: .strSource)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.sourceURL = URL(string: source)
+        self.sourceURL = !source.isEmpty
+            ? URL(string: source)
+            : nil
 
         // Make parsing ingredients and its corresponding quantities scalable
         let dynamicContainer = try decoder.container(keyedBy: DynamicKeys.self)
@@ -127,9 +133,6 @@ public struct Meal: Decodable, Equatable {
 /// Combined representation of an ingredient with its corresponding measurement from
 /// [themealdb.com](https://themealdb.com/api.php).
 public struct Ingredient: Decodable, Equatable, Hashable, Comparable {
-    /// Base url for ingredient's thumbnail.
-    private static let baseURL = URL(string: "https://www.themealdb.com/images/ingredients/")
-    
     public let name: String
     public let quantity: String
     public let thumbnailURL: URL?
@@ -139,7 +142,7 @@ public struct Ingredient: Decodable, Equatable, Hashable, Comparable {
         self.quantity = quantity
         self.thumbnailURL = .init(
             string: "\(name.replacingOccurrences(of: " ", with: "-"))-Small.png",
-            relativeTo: Self.baseURL
+            relativeTo: NetworkURL.ingredient
         )
     }
     

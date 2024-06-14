@@ -37,7 +37,9 @@ public struct MealItem: Decodable, Identifiable, Equatable {
         let thumbnail = try container
             .decodeIfPresent(String.self, forKey: .strMealThumb)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.thumbnailURL = URL(string: "\(thumbnail)/preview")
+        self.thumbnailURL = !thumbnail.isEmpty
+            ? URL(string: "\(thumbnail)/preview")
+            : nil
     }
 }
 

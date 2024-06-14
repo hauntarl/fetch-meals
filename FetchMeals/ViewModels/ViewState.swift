@@ -16,5 +16,5 @@ public enum ViewState<T> {
     
     // The message is of type LocalizedStringKey because Text view supports embedding
     // markdown via LocalizedStringKey.
-    case failure(message: LocalizedStringKey)
+    case failure(message: String)
 }

@@ -93,13 +93,14 @@ final class NetworkTests: XCTestCase {
     
     /// Test session throws error, aims to run the protocol's default implementation
     func testExecute_SessionError() async throws {
-        session = MockSession(error: NetworkError.malformedURL)
+        session = MockSession(error: MockError())
         network = MockNetworkProvider(session: session)
         
         do {
             let request = URLRequest(url: NetworkURL.base)
             _ = try await network.execute(request: request)
-        } catch NetworkError.malformedURL {
+        } catch {
+            XCTAssertTrue(error is MockError)
             return
         }
         XCTFail("Should never reach here.")
@@ -179,6 +180,7 @@ final class NetworkTests: XCTestCase {
         XCTFail("Should never reach here.")
     }
     
+    /// Test response data parsing error, aims to run the protocol's default implementation
     func testFetch_ParsingError() async throws {
         session = MockSession(
             data: Data(),

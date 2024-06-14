@@ -11,29 +11,22 @@ import Foundation
 final class MockNetworkProvider: Network {
     let session: any Session
     let decoder: JSONDecoder
-    let error: Error?
     
     init(
         session: any Session,
-        decoder: JSONDecoder = .init(),
-        error: Error? = nil
+        decoder: JSONDecoder = .init()
     ) {
         self.session = session
         self.decoder = decoder
-        self.error = error
     }
     
     func fetchMeals(for category: String) async throws -> [MealItem] {
-        if let error {
-            throw error
-        }
-        return MealItemWrapper.sample.meals
+        let result: MealItemWrapper = try await fetch(from: NetworkURL.base, headers: [:])
+        return result.meals
     }
     
     func fetchMealDetails(for id: String) async throws -> Meal {
-        if let error {
-            throw error
-        }
-        return Meal.sample
+        let result: MealWrapper = try await fetch(from: NetworkURL.base, headers: [:])
+        return result.meals.first!
     }
 }

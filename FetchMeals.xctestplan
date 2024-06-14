@@ -9,6 +9,15 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:FetchMeals.xcodeproj",
+          "identifier" : "FC8F6A762C190B0E00D9A975",
+          "name" : "FetchMeals"
+        }
+      ]
+    },
     "environmentVariableEntries" : [
       {
         "key" : "IDEPreferLogStreaming",

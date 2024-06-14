@@ -10,23 +10,25 @@ import Foundation
 public extension MealDetailsView {
     @MainActor
     class ViewModel: ObservableObject {
-        @Published var state: ViewState<Meal> = .loading
+        @Published public var state: ViewState<Meal> = .loading
         
         private let network: Network
         
-        init(network: Network = NetworkProvider.shared) {
+        public init(network: Network = NetworkProvider.shared) {
             self.network = network
         }
         
-        func fetchMealDetails(for id: String) async {
+        public func fetchMealDetails(for id: String) async {
             do {
                 state = .loading
                 let result = try await network.fetchMealDetails(for: id)
                 state = .success(result: result)
             } catch is NetworkError {
-                state = .failure(message: "`Network Error:` Please try again after some time.")
+                state = .failure(message: "Network Error: Please try again after some time")
+            } catch is DecodingError {
+                state = .failure(message: "Parsing Error: Data could not be processed")
             } catch {
-                state = .failure(message: "`Unknown Error:` \(error.localizedDescription)")
+                state = .failure(message: "Error: \(error.localizedDescription)")
             }
         }
     }

@@ -91,8 +91,12 @@ public extension Network {
     }
 }
 
+/// Stores different endpoint's base URLs
 public struct NetworkURL {
+    /// Base URL for the meal db API.
     public static let base = URL(string: "https://themealdb.com/api/json/v1/1/")!
+    /// Base URL for ingredient's thumbnail.
+    public static let ingredient = URL(string: "https://www.themealdb.com/images/ingredients/")!
 }
 
 /// NetworkError enum used for throwing and handling specific network errors.
