@@ -10,6 +10,7 @@ import SwiftUI
 /// The root view of the application
 struct RootView: View {
     @StateObject private var router = NavigationRouter()
+    @StateObject var categoryViewModel = CategoryView.ViewModel()
     @State private var showingWelcomeMessage = true
     @State private var currentLayout = 0
 
@@ -57,6 +58,7 @@ struct RootView: View {
                 )
         }
         .environmentObject(router)
+        .environmentObject(categoryViewModel)
     }
     
     private func transition() {
@@ -82,8 +84,8 @@ struct RootView: View {
         switch value {
         case .mealDetailsView(let id):
             MealDetailsView(id: id)
-        case .changeCategoryView:
-            EmptyView()
+        case .categoryView:
+            CategoryView()
         }
     }
 }

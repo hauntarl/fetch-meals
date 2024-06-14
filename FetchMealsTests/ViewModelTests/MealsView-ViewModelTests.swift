@@ -33,7 +33,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         viewModel = await MealsView.ViewModel(network: network)
         
-        await viewModel.fetchMeals()
+        await viewModel.fetchMeals(for: .dessert)
         
         switch await (viewModel.state) {
         case .success(let got):
@@ -59,7 +59,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         viewModel = await MealsView.ViewModel(network: network)
         
-        await viewModel.fetchMeals()
+        await viewModel.fetchMeals(for: .dessert)
         
         switch await (viewModel.state) {
         case .success(let got):
@@ -84,7 +84,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         viewModel = await MealsView.ViewModel(network: network)
         
-        await viewModel.fetchMeals()
+        await viewModel.fetchMeals(for: .dessert)
         
         switch await (viewModel.state) {
         case .failure(let message):
@@ -109,7 +109,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         viewModel = await MealsView.ViewModel(network: network)
         
-        await viewModel.fetchMeals()
+        await viewModel.fetchMeals(for: .dessert)
         
         switch await (viewModel.state) {
         case .failure(let message):
@@ -127,7 +127,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         network = MockNetworkProvider(session: session)
         viewModel = await MealsView.ViewModel(network: network)
         
-        await viewModel.fetchMeals()
+        await viewModel.fetchMeals(for: .dessert)
         
         switch await (viewModel.state) {
         case .failure(let message):

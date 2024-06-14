@@ -12,7 +12,7 @@ class NavigationRouter: ObservableObject {
     @Published var path = NavigationPath()
     
     enum Destination: Hashable {
-        case changeCategoryView
+        case categoryView
         case mealDetailsView(id: String)
     }
     

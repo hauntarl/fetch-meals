@@ -11,7 +11,6 @@ import SwiftUI
 public extension MealsView {
     @MainActor
     class ViewModel: ObservableObject {
-        @Published public var category: MealCategory = .dessert
         @Published public var state: ViewState<[MealItem]> = .loading
         @Published public var searchText: String = ""
         
@@ -21,7 +20,7 @@ public extension MealsView {
             self.network = network
         }
         
-        public func fetchMeals() async {
+        public func fetchMeals(for category: MealCategory) async {
             do {
                 let result = try await network.fetchMeals(for: category.rawValue)
                 state = .success(result: result.clean())

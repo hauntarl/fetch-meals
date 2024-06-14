@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct MealsView: View {
     @EnvironmentObject var router: NavigationRouter
+    @EnvironmentObject var categoryViewModel: CategoryView.ViewModel
     @StateObject var viewModel = ViewModel()
     
     public var body: some View {
@@ -34,13 +35,15 @@ public struct MealsView: View {
             }
         }
         .animation(.easeOut, value: viewModel.state)
+        .environmentObject(categoryViewModel)
+        .onReceive(categoryViewModel.$category, perform: onChange(category:))
     }
     
     private var progress: some View {
         ProgressView()
             .task {
                 viewModel.state = .loading
-                await viewModel.fetchMeals()
+                await viewModel.fetchMeals(for: categoryViewModel.category)
             }
     }
     
@@ -51,39 +54,49 @@ public struct MealsView: View {
                 prompt: "What are you craving for?"
             )
             .refreshable {
-                await viewModel.fetchMeals()
+                await viewModel.fetchMeals(for: categoryViewModel.category)
             }
             .scrollIndicators(.hidden)
             .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(viewModel.category.rawValue)
+            .navigationTitle(categoryViewModel.category.rawValue)
             .navigationBarTitleDisplayMode(.large)
             .animation(.easeOut, value: viewModel.searchText)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Category", systemImage: "gearshape.fill") {
+                        router.navigate(to: .categoryView)
+                    }
+                }
+            }
     }
     
     private func buildRow(for item: MealItem) -> some View {
-        HStack {
-            AsyncImage(url: item.thumbnailURL) { thumbnail in
-                thumbnail
-                    .resizable()
-                    .scaledToFill()
-            } placeholder: {
-                Rectangle()
-                    .fill(.regularMaterial)
-            }
-            .frame(width: 30, height: 30)
-            .clipShape(.circle)
-            
-            Text(item.name)
-            
-            Spacer()
-            
-            Image(systemName: "chevron.right")
-                .font(.body)
-                .foregroundStyle(.secondary)
-        }
-        .onTapGesture {
+        Button {
             router.navigate(to: .mealDetailsView(id: item.id))
         }
+        label: {
+            HStack {
+                AsyncImage(url: item.thumbnailURL) { thumbnail in
+                    thumbnail
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Rectangle()
+                        .fill(.regularMaterial)
+                }
+                .frame(width: 30, height: 30)
+                .clipShape(.circle)
+                
+                Text(item.name)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .foregroundStyle(.primary)
     }
     
     private func error(with message: String) -> some View {
@@ -91,7 +104,7 @@ public struct MealsView: View {
             VStack(spacing: 20) {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .font(.system(size: 60))
-                Text("Couldn't fetch \(viewModel.category)")
+                Text("Couldn't fetch \(categoryViewModel.category)")
                     .font(.title)
             }
         } description: {
@@ -100,9 +113,15 @@ public struct MealsView: View {
             Button("Tap to Retry") {
                 Task {
                     viewModel.state = .loading
-                    await viewModel.fetchMeals()
+                    await viewModel.fetchMeals(for: categoryViewModel.category)
                 }
             }
+        }
+    }
+    
+    private func onChange(category: MealCategory) {
+        Task {
+            await viewModel.fetchMeals(for: category)
         }
     }
 }

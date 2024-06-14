@@ -8,7 +8,9 @@
 import Foundation
 
 /// List of different meal categories
-public enum MealCategory: String {
+public enum MealCategory: String, Identifiable, CaseIterable {
+    public var id: Self { self }
+    
     case dessert = "Dessert"
     case seafood = "Seafood"
 }
