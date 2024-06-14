@@ -80,8 +80,8 @@ struct RootView: View {
     @ViewBuilder
     private func destination(for value: NavigationRouter.Destination) -> some View {
         switch value {
-        case .mealDetailsView(let id, let previewURL):
-            MealDetailsView(id: id, previewURL: previewURL)
+        case .mealDetailsView(let id):
+            MealDetailsView(id: id)
         case .changeCategoryView:
             EmptyView()
         }

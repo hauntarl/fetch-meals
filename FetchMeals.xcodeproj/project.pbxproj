@@ -146,8 +146,8 @@
 		FC8F6A6E2C190B0E00D9A975 = {
 			isa = PBXGroup;
 			children = (
-				FCB4979C2C1BB37D00ECDBBC /* FetchMeals.xctestplan */,
 				FC8F6A792C190B0E00D9A975 /* FetchMeals */,
+				FCB4979C2C1BB37D00ECDBBC /* FetchMeals.xctestplan */,
 				FC8F6A8A2C190B1000D9A975 /* FetchMealsTests */,
 				FC8F6A942C190B1000D9A975 /* FetchMealsUITests */,
 				FC8F6A782C190B0E00D9A975 /* Products */,

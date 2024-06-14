@@ -11,12 +11,10 @@ public struct MealDetailsView: View {
     @EnvironmentObject var router: NavigationRouter
     @StateObject var viewModel = ViewModel()
     
-    let id: String
-    let previewURL: URL?
+    private let id: String
     
-    public init(id: String, previewURL: URL?) {
+    public init(id: String) {
         self.id = id
-        self.previewURL = previewURL
     }
     
     public var body: some View {
@@ -45,8 +43,5 @@ public struct MealDetailsView: View {
 }
 
 #Preview {
-    MealDetailsView(
-        id: MealItem.sample.id,
-        previewURL: MealItem.sample.thumbnailURL
-    )
+    MealDetailsView(id: MealItem.sample.id)
 }

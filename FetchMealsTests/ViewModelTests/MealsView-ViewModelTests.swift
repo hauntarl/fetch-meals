@@ -138,4 +138,35 @@ final class MealsView_ViewModelTests: XCTestCase {
             XCTFail("ViewState should not be in loading state")
         }
     }
+    
+    /// Test if filtered method returns the same list of meals when search text is empty
+    func testFiltered_SearchTextIsEmpty() async throws {
+        let meals = MealItemWrapper.sample.meals
+        session = MockSession(error: MockError())
+        network = MockNetworkProvider(session: session)
+        viewModel = await MealsView.ViewModel(network: network)
+        await viewModel.set(searchText: "")
+        
+        let expected = meals
+        let got = await viewModel.filtered(meals)
+        
+        XCTAssertEqual(got, expected, "Filtered meals should match")
+    }
+    
+    /// Test if filtered method returns all meals containing the search text
+    func testFiltered_SearchTextIsNotEmpty() async throws {
+        let meals = MealItemWrapper.sample.meals
+        session = MockSession(error: MockError())
+        network = MockNetworkProvider(session: session)
+        viewModel = await MealsView.ViewModel(network: network)
+        await viewModel.set(searchText: "Apam")
+        
+        let got = await viewModel.filtered(meals)
+        
+        XCTAssertEqual(got.count, 5, "After filtering the meals count should be 5")
+        XCTAssertTrue(
+            got.allSatisfy { $0.name.localizedCaseInsensitiveContains("Apam")},
+            "All meals should contain the search text"
+        )
+    }
 }

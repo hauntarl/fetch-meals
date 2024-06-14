@@ -13,6 +13,7 @@ public extension MealsView {
     class ViewModel: ObservableObject {
         @Published public var category: MealCategory = .dessert
         @Published public var state: ViewState<[MealItem]> = .loading
+        @Published public var searchText: String = ""
         
         private let network: Network
         
@@ -22,7 +23,6 @@ public extension MealsView {
         
         public func fetchMeals() async {
             do {
-                state = .loading
                 let result = try await network.fetchMeals(for: category.rawValue)
                 state = .success(result: result.clean())
             } catch is NetworkError {
@@ -32,6 +32,16 @@ public extension MealsView {
             } catch {
                 state = .failure(message: "Error: \(error.localizedDescription)")
             }
+        }
+        
+        public func filtered(_ meals: [MealItem]) -> [MealItem] {
+            searchText.isEmpty ? meals : meals.filter {
+                $0.name.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+        
+        public func set(searchText: String) {
+            self.searchText = searchText
         }
     }
 }

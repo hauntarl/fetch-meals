@@ -9,7 +9,7 @@ import SwiftUI
 
 /// A generic ViewState, utilized to show different views depending on the state of 
 /// this enum.
-public enum ViewState<T> {
+public enum ViewState<T>: Equatable where T: Equatable {
     case loading
     
     case success(result: T)
