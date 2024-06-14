@@ -34,11 +34,6 @@ public extension MealsView {
             }
         }
     }
-    
-    enum MealCategory: String {
-        case dessert = "Dessert"
-        case seafood = "Seafood"
-    }
 }
 
 extension Array where Element == MealItem {

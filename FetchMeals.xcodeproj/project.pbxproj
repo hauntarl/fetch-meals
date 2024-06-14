@@ -25,6 +25,7 @@
 		FCB4979B2C1BA4FF00ECDBBC /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4979A2C1BA4FF00ECDBBC /* NetworkProviderTests.swift */; };
 		FCB4979F2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */; };
 		FCB497A12C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */; };
+		FCB497A32C1BD95F00ECDBBC /* MealCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */; };
 		FCF45F082C1A669A0067389C /* MealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F072C1A669A0067389C /* MealsView.swift */; };
 		FCF45F0A2C1A66E60067389C /* MealsView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */; };
 		FCF45F0C2C1A68520067389C /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F0B2C1A68520067389C /* ViewState.swift */; };
@@ -74,6 +75,7 @@
 		FCB4979C2C1BB37D00ECDBBC /* FetchMeals.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FetchMeals.xctestplan; sourceTree = "<group>"; };
 		FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModelTests.swift"; sourceTree = "<group>"; };
 		FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealDetailsView-ViewModelTests.swift"; sourceTree = "<group>"; };
+		FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCategory.swift; sourceTree = "<group>"; };
 		FCF45F072C1A669A0067389C /* MealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsView.swift; sourceTree = "<group>"; };
 		FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModel.swift"; sourceTree = "<group>"; };
 		FCF45F0B2C1A68520067389C /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				FC4AD32F2C19228E000EDBB2 /* MealItem+Extension.swift */,
 				FC4AD32D2C19171D000EDBB2 /* Meal.swift */,
 				FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */,
+				FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				FCF45F122C1A84240067389C /* MealDetailsView.swift in Sources */,
 				FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */,
 				FC4AD3352C192DD0000EDBB2 /* Network.swift in Sources */,
+				FCB497A32C1BD95F00ECDBBC /* MealCategory.swift in Sources */,
 				FC4AD3302C19228E000EDBB2 /* MealItem+Extension.swift in Sources */,
 				FCF45F102C1A82F40067389C /* RootView.swift in Sources */,
 				FC4AD32A2C190FF2000EDBB2 /* MealItem.swift in Sources */,
