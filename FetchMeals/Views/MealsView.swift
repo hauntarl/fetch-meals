@@ -76,7 +76,10 @@ public struct MealsView: View {
     
     private func buildRow(for item: MealItem) -> some View {
         Button {
-            router.navigate(to: .mealDetailsView(id: item.id))
+            router.navigate(to: .mealDetailsView(
+                id: item.id,
+                name: item.name
+            ))
         }
         label: {
             HStack {
@@ -105,22 +108,12 @@ public struct MealsView: View {
     }
     
     private func error(with message: String) -> some View {
-        ContentUnavailableView {
-            VStack(spacing: 20) {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 60))
-                Text("Couldn't fetch \(categoryViewModel.category)")
-                    .font(.title)
-            }
-        } description: {
-            Text(message)
-        } actions: {
-            Button("Tap to Retry") {
-                Task {
-                    viewModel.state = .loading
-                    await viewModel.fetchMeals(for: categoryViewModel.category)
-                }
-            }
+        ErrorView(
+            title: "Couldn't fetch **\(categoryViewModel.category.rawValue)**",
+            message: message
+        ) {
+            viewModel.state = .loading
+            await viewModel.fetchMeals(for: categoryViewModel.category)
         }
     }
     
@@ -147,9 +140,10 @@ public struct MealsView: View {
                     switch ($0) {
                     case .categoryView:
                         CategoryView()
-                    case .mealDetailsView(let id):
+                    case .mealDetailsView(let id, let name):
                         MealDetailsView(
                             id: id,
+                            name: name,
                             MealDetailsView.ViewModel(network: PreviewNetworkProvider())
                         )
                     }
