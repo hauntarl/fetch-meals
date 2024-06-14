@@ -9,7 +9,6 @@ import Observation
 import SwiftUI
 
 public extension MealsView {
-    @MainActor
     class ViewModel: ObservableObject {
         @Published public var state: ViewState<[MealItem]> = .loading
         @Published public var searchText: String = ""
@@ -20,6 +19,7 @@ public extension MealsView {
             self.network = network
         }
         
+        @MainActor
         public func fetchMeals(for category: MealCategory) async {
             do {
                 let result = try await network.fetchMeals(for: category.rawValue)
@@ -33,14 +33,11 @@ public extension MealsView {
             }
         }
         
+        @MainActor
         public func filtered(_ meals: [MealItem]) -> [MealItem] {
             searchText.isEmpty ? meals : meals.filter {
                 $0.name.localizedCaseInsensitiveContains(searchText)
             }
-        }
-        
-        public func set(searchText: String) {
-            self.searchText = searchText
         }
     }
 }

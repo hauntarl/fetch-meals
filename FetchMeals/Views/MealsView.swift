@@ -10,7 +10,11 @@ import SwiftUI
 public struct MealsView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var categoryViewModel: CategoryView.ViewModel
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel: ViewModel
+    
+    public init(_ viewModel: ViewModel = .init()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     public var body: some View {
         ZStack {
@@ -88,6 +92,7 @@ public struct MealsView: View {
                 .clipShape(.circle)
                 
                 Text(item.name)
+                    .font(.subheadline)
                 
                 Spacer()
                 
@@ -127,5 +132,34 @@ public struct MealsView: View {
 }
 
 #Preview {
-    MealsView()
+    struct MealsPreview: View {
+        @StateObject private var router = NavigationRouter()
+        @StateObject private var categoryViewModel = CategoryView.ViewModel()
+        
+        var body: some View {
+            NavigationStack(path: $router.path) {
+                MealsView(MealsView.ViewModel(
+                    network: PreviewNetworkProvider(
+                        error: nil
+                    )
+                ))
+                .navigationDestination(for: NavigationRouter.Destination.self) {
+                    switch ($0) {
+                    case .categoryView:
+                        CategoryView()
+                    case .mealDetailsView(let id):
+                        MealDetailsView(
+                            id: id,
+                            MealDetailsView.ViewModel(network: PreviewNetworkProvider())
+                        )
+                    }
+                }
+            }
+            .environmentObject(router)
+            .environmentObject(categoryViewModel)
+        }
+    }
+    
+    return MealsPreview()
+        .preferredColorScheme(.dark)
 }

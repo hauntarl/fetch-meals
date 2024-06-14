@@ -8,7 +8,6 @@
 import Foundation
 
 public extension MealDetailsView {
-    @MainActor
     class ViewModel: ObservableObject {
         @Published public var state: ViewState<Meal> = .loading
         
@@ -18,6 +17,7 @@ public extension MealDetailsView {
             self.network = network
         }
         
+        @MainActor
         public func fetchMealDetails(for id: String) async {
             do {
                 state = .loading

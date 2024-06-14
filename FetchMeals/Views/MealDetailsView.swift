@@ -9,12 +9,13 @@ import SwiftUI
 
 public struct MealDetailsView: View {
     @EnvironmentObject var router: NavigationRouter
-    @StateObject var viewModel = ViewModel()
+    @StateObject var viewModel: ViewModel
     
     private let id: String
     
-    public init(id: String) {
+    public init(id: String, _ viewModel: ViewModel = .init()) {
         self.id = id
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     public var body: some View {
@@ -43,5 +44,19 @@ public struct MealDetailsView: View {
 }
 
 #Preview {
-    MealDetailsView(id: MealItem.sample.id)
+    struct MealDetailsPreview: View {
+        var body: some View {
+            MealDetailsView(
+                id: MealItem.sample.id,
+                MealDetailsView.ViewModel(
+                    network: PreviewNetworkProvider(
+                        error: NetworkError.missingData
+                    )
+                )
+            )
+        }
+    }
+    
+    return MealDetailsPreview()
+        .preferredColorScheme(.dark)
 }

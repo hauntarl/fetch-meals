@@ -9,16 +9,12 @@ import Observation
 import SwiftUI
 
 public extension CategoryView {
-    @MainActor
     class ViewModel: ObservableObject {
         @Published public var category: MealCategory = .dessert
         
         public init() {}
         
-        public func get() -> MealCategory {
-            category
-        }
-        
+        @MainActor
         public func update(category: MealCategory) {
             self.category = category
         }

@@ -31,12 +31,12 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
             )!
         )
         network = MockNetworkProvider(session: session)
-        viewModel = await MealDetailsView.ViewModel(network: network)
+        viewModel = MealDetailsView.ViewModel(network: network)
         let expected = Meal.sample
         
         await viewModel.fetchMealDetails(for: "12345")
         
-        switch await (viewModel.state) {
+        switch (viewModel.state) {
         case .success(let got):
             XCTAssertEqual(got, expected, "Meal details should match")
         case .loading:
@@ -57,11 +57,11 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
             )!
         )
         network = MockNetworkProvider(session: session)
-        viewModel = await MealDetailsView.ViewModel(network: network)
+        viewModel = MealDetailsView.ViewModel(network: network)
         
         await viewModel.fetchMealDetails(for: "12345")
         
-        switch await (viewModel.state) {
+        switch (viewModel.state) {
         case .failure(let message):
             XCTAssertTrue(message.hasPrefix("Network Error"), "Should return a network error")
         case .success(_):
@@ -82,11 +82,11 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
             )!
         )
         network = MockNetworkProvider(session: session)
-        viewModel = await MealDetailsView.ViewModel(network: network)
+        viewModel = MealDetailsView.ViewModel(network: network)
         
         await viewModel.fetchMealDetails(for: "12345")
         
-        switch await (viewModel.state) {
+        switch (viewModel.state) {
         case .failure(let message):
             XCTAssertTrue(message.hasPrefix("Parsing Error"), "Should return a parsing error")
         case .success(_):
@@ -100,11 +100,11 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
     func testFetchMealDetails_UnexpectedError() async throws {
         session = MockSession(error: MockError())
         network = MockNetworkProvider(session: session)
-        viewModel = await MealDetailsView.ViewModel(network: network)
+        viewModel = MealDetailsView.ViewModel(network: network)
         
         await viewModel.fetchMealDetails(for: "12345")
         
-        switch await (viewModel.state) {
+        switch (viewModel.state) {
         case .failure(let message):
             XCTAssertTrue(message.hasPrefix("Error"), "Should return an unexpected error")
         case .success(_):

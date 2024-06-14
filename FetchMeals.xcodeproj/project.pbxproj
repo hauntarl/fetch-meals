@@ -20,6 +20,7 @@
 		FC4AD33B2C19398C000EDBB2 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33A2C19398C000EDBB2 /* MockSession.swift */; };
 		FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33C2C194B88000EDBB2 /* NetworkProvider.swift */; };
 		FC4AD33F2C1955DE000EDBB2 /* MockNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */; };
+		FC8A73042C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8A73032C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift */; };
 		FC8F6A7B2C190B0E00D9A975 /* FetchMealsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8F6A7A2C190B0E00D9A975 /* FetchMealsApp.swift */; };
 		FC8F6A7F2C190B1000D9A975 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8F6A7E2C190B1000D9A975 /* Assets.xcassets */; };
 		FC8F6A822C190B1000D9A975 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC8F6A812C190B1000D9A975 /* Preview Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		FC4AD33A2C19398C000EDBB2 /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 		FC4AD33C2C194B88000EDBB2 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProvider.swift; sourceTree = "<group>"; };
+		FC8A73032C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewNetworkProvider.swift; sourceTree = "<group>"; };
 		FC8F6A772C190B0E00D9A975 /* FetchMeals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchMeals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC8F6A7A2C190B0E00D9A975 /* FetchMealsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsApp.swift; sourceTree = "<group>"; };
 		FC8F6A7E2C190B1000D9A975 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				FC8F6A812C190B1000D9A975 /* Preview Assets.xcassets */,
+				FC8A73032C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				FCF45F082C1A669A0067389C /* MealsView.swift in Sources */,
 				FCF45F122C1A84240067389C /* MealDetailsView.swift in Sources */,
 				FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */,
+				FC8A73042C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift in Sources */,
 				FC2BD5042C1BFC5200E4A713 /* CategoryView.swift in Sources */,
 				FC4AD3352C192DD0000EDBB2 /* Network.swift in Sources */,
 				FCB497A32C1BD95F00ECDBBC /* MealCategory.swift in Sources */,
