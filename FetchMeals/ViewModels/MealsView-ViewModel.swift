@@ -13,47 +13,80 @@ public extension MealsView {
     /// the list of meals
     final class ViewModel: ObservableObject {
         @Published public var state: ViewState<[MealItem]> = .loading
+        @Published public var meals: [MealItem] = []
         @Published public var searchText: String = ""
-        
-        private let network: Network
-        
+        public var result: [MealItem] = []
+                
         /// Initializes the view model with provided Network object
         public init(network: Network = NetworkProvider.shared) {
             self.network = network
         }
+
+        private let network: Network
         
         /// Fetches meals for the given category and cleans it
         @MainActor
         public func fetchMeals(for category: MealCategory) async {
             do {
-                let result = try await network.fetchMeals(for: category.rawValue)
-                state = .success(result: result.clean())
+                let response = try await network.fetchMeals(for: category.rawValue)
+                result = response.cleaned()
+                meals = result
+                state = .success(result: meals)
             } catch is NetworkError {
-                state = .failure(message: "Network Error: Please try again after some time")
+                state = .failure(message: "Please try again after some time")
             } catch is DecodingError {
-                state = .failure(message: "Parsing Error: Data could not be processed")
+                state = .failure(message: "Data could not be processed")
             } catch {
-                state = .failure(message: "Error: \(error.localizedDescription)")
+                state = .failure(message: error.localizedDescription)
             }
         }
         
-        /// Returns a filtered list of meals based on the current `searchText`
+        /// Sorts list of meals based on the current value of the `sortOrder`
         @MainActor
-        public func filtered(_ meals: [MealItem]) -> [MealItem] {
-            searchText.isEmpty ? meals : meals.filter {
-                $0.name.localizedCaseInsensitiveContains(searchText)
+        public func sortBy(key: MealSortKey, order: MealSortOrder) {
+            switch key {
+            case .id:
+                meals = meals.sorted(by: \.id, order: order)
+            case .name:
+                meals = meals.sorted(by: \.name, order: order)
             }
+        }
+        
+        /// Filters list of meals based on the current value of the `searchText`
+        @MainActor
+        public func filter() {
+            meals = result.filtered(by: searchText)
         }
     }
 }
 
-extension Array where Element == MealItem {
-    /// Removes meals with missing data
-    func clean() -> [Element] {
-        lazy.filter { item in
-            !item.id.isEmpty 
+public extension Array where Element == MealItem {
+    /// Remove meals with missing data
+    func cleaned() -> [Element] {
+        self.lazy.filter { item in
+            !item.id.isEmpty
             && !item.name.isEmpty
             && item.thumbnailURL != nil
+        }
+    }
+    
+    /// Sort meals using the given key path and sort order
+    func sorted<Key>(
+        by keyPath: KeyPath<Element, Key>,
+        order: MealSortOrder
+    ) -> [Element] where Key: Comparable {
+        switch order {
+        case .ascending:
+            self.sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
+        case .descending:
+            self.sorted { $0[keyPath: keyPath] > $1[keyPath: keyPath] }
+        }
+    }
+    
+    /// Filter meals by name based on the input query
+    func filtered(by query: String) -> [Element] {
+        query.isEmpty ? self : self.lazy.filter {
+            $0.name.localizedCaseInsensitiveContains(query)
         }
     }
 }

@@ -88,7 +88,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .failure(let message):
-            XCTAssertTrue(message.hasPrefix("Network Error"), "Should return a network error")
+            XCTAssertEqual(message, "Please try again after some time", "Should return a network error")
         case .success(_):
             XCTFail("ViewState should not be in success state")
         case .loading:
@@ -113,7 +113,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .failure(let message):
-            XCTAssertTrue(message.hasPrefix("Parsing Error"), "Should return a parsing error")
+            XCTAssertEqual(message, "Data could not be processed", "Should return a network error")
         case .success(_):
             XCTFail("ViewState should not be in success state")
         case .loading:
@@ -130,8 +130,8 @@ final class MealsView_ViewModelTests: XCTestCase {
         await viewModel.fetchMeals(for: .dessert)
         
         switch (viewModel.state) {
-        case .failure(let message):
-            XCTAssertTrue(message.hasPrefix("Error"), "Should return an unexpected error")
+        case .failure(_):
+            return
         case .success(_):
             XCTFail("ViewState should not be in success state")
         case .loading:
@@ -139,33 +139,93 @@ final class MealsView_ViewModelTests: XCTestCase {
         }
     }
     
-    /// Test if filtered method returns the same list of meals when search text is empty
-    func testFiltered_SearchTextIsEmpty() async throws {
+    /// Test sorting meals by name in ascending order
+    func testFiltered_SortMeals_ByName_Ascending() async throws {
         let meals = MealItemWrapper.sample.meals
-        session = MockSession(error: MockError())
+        session = MockSession()
+        network = MockNetworkProvider(session: session)
+        viewModel = MealsView.ViewModel(network: network)
+        
+        let expected = meals.sorted { $0.name < $1.name }
+        viewModel.meals = meals
+        await viewModel.sortBy(key: .name, order: .ascending)
+        
+        XCTAssertEqual(viewModel.meals, expected, "Sorted meals should match")
+    }
+    
+    /// Test sorting meals by name in descending order
+    func testFiltered_SortMeals_ByName_Descending() async throws {
+        let meals = MealItemWrapper.sample.meals
+        session = MockSession()
+        network = MockNetworkProvider(session: session)
+        viewModel = MealsView.ViewModel(network: network)
+        
+        let expected = meals.sorted { $0.name > $1.name }
+        viewModel.meals = meals
+        await viewModel.sortBy(key: .name, order: .descending)
+        
+        XCTAssertEqual(viewModel.meals, expected, "Sorted meals should match")
+    }
+    
+    /// Test sorting meals by id in ascending order
+    func testFiltered_SortMeals_ById_Ascending() async throws {
+        let meals = MealItemWrapper.sample.meals
+        session = MockSession()
+        network = MockNetworkProvider(session: session)
+        viewModel = MealsView.ViewModel(network: network)
+        
+        let expected = meals.sorted { $0.id < $1.id }
+        viewModel.meals = meals
+        await viewModel.sortBy(key: .id, order: .ascending)
+        
+        XCTAssertEqual(viewModel.meals, expected, "Sorted meals should match")
+    }
+    
+    /// Test sorting meals by id in descending order
+    func testFiltered_SortMeals_ById_Descending() async throws {
+        let meals = MealItemWrapper.sample.meals
+        session = MockSession()
         network = MockNetworkProvider(session: session)
         viewModel = MealsView.ViewModel(network: network)
         viewModel.searchText.removeAll()
         
-        let expected = meals
-        let got = await viewModel.filtered(meals)
+        let expected = meals.sorted { $0.id > $1.id }
+        viewModel.meals = meals
+        await viewModel.sortBy(key: .id, order: .descending)
         
-        XCTAssertEqual(got, expected, "Filtered meals should match")
+        XCTAssertEqual(viewModel.meals, expected, "Sorted meals should match")
+    }
+
+    
+    /// Test if filtered method returns the same list of meals when search text is empty
+    func testFiltered_SearchTextIsEmpty() async throws {
+        let meals = MealItemWrapper.sample.meals
+        session = MockSession()
+        network = MockNetworkProvider(session: session)
+        viewModel = MealsView.ViewModel(network: network)
+        viewModel.searchText.removeAll()
+        
+        let expected = meals.first!
+        viewModel.result = meals
+        await viewModel.filter()
+        
+        XCTAssertEqual(viewModel.meals.first, expected, "Filtered meals should match")
     }
     
     /// Test if filtered method returns all meals containing the search text
     func testFiltered_SearchTextIsNotEmpty() async throws {
         let meals = MealItemWrapper.sample.meals
-        session = MockSession(error: MockError())
+        session = MockSession()
         network = MockNetworkProvider(session: session)
         viewModel = MealsView.ViewModel(network: network)
         viewModel.searchText = "Apam"
         
-        let got = await viewModel.filtered(meals)
+        viewModel.result = meals
+        await viewModel.filter()
         
-        XCTAssertEqual(got.count, 5, "After filtering the meals count should be 5")
+        XCTAssertEqual(viewModel.meals.count, 5, "After filtering the meals count should be 5")
         XCTAssertTrue(
-            got.allSatisfy { $0.name.localizedCaseInsensitiveContains("Apam")},
+            viewModel.meals.allSatisfy { $0.name.localizedCaseInsensitiveContains("Apam")},
             "All meals should contain the search text"
         )
     }

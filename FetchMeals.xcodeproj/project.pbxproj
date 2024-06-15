@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FC0A64812C1D2A2800663EE9 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0A64802C1D2A2800663EE9 /* WebView.swift */; };
-		FC2BD5042C1BFC5200E4A713 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5032C1BFC5200E4A713 /* CategoryView.swift */; };
-		FC2BD5062C1BFC8E00E4A713 /* CategoryView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5052C1BFC8E00E4A713 /* CategoryView-ViewModel.swift */; };
-		FC2BD5082C1C054300E4A713 /* CategoryView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5072C1C054300E4A713 /* CategoryView-ViewModelTests.swift */; };
+		FC2BD5042C1BFC5200E4A713 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5032C1BFC5200E4A713 /* SettingsView.swift */; };
+		FC2BD5062C1BFC8E00E4A713 /* SettingsView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5052C1BFC8E00E4A713 /* SettingsView-ViewModel.swift */; };
+		FC2C33402C1DDA69006FDF04 /* MealSortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */; };
 		FC2CA5A62C1D4130007898EE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */; };
 		FC4AD32A2C190FF2000EDBB2 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD3292C190FF1000EDBB2 /* MealItem.swift */; };
 		FC4AD32C2C190FFA000EDBB2 /* Meal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */; };
@@ -62,9 +62,9 @@
 
 /* Begin PBXFileReference section */
 		FC0A64802C1D2A2800663EE9 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		FC2BD5032C1BFC5200E4A713 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		FC2BD5052C1BFC8E00E4A713 /* CategoryView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryView-ViewModel.swift"; sourceTree = "<group>"; };
-		FC2BD5072C1C054300E4A713 /* CategoryView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryView-ViewModelTests.swift"; sourceTree = "<group>"; };
+		FC2BD5032C1BFC5200E4A713 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FC2BD5052C1BFC8E00E4A713 /* SettingsView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView-ViewModel.swift"; sourceTree = "<group>"; };
+		FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSortOrder.swift; sourceTree = "<group>"; };
 		FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FC4AD3292C190FF1000EDBB2 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
 		FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+Extension.swift"; sourceTree = "<group>"; };
@@ -134,6 +134,8 @@
 				FC4AD32D2C19171D000EDBB2 /* Meal.swift */,
 				FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */,
 				FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */,
+				FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */,
+				FCF45F0B2C1A68520067389C /* ViewState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,7 +239,6 @@
 			children = (
 				FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */,
 				FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */,
-				FC2BD5072C1C054300E4A713 /* CategoryView-ViewModelTests.swift */,
 			);
 			path = ViewModelTests;
 			sourceTree = "<group>";
@@ -249,7 +250,7 @@
 				FCF45F072C1A669A0067389C /* MealsView.swift */,
 				FCF45F112C1A84230067389C /* MealDetailsView.swift */,
 				FC8A73082C1D18FC00E9FCB4 /* MealDetailsView+Extension.swift */,
-				FC2BD5032C1BFC5200E4A713 /* CategoryView.swift */,
+				FC2BD5032C1BFC5200E4A713 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -257,11 +258,10 @@
 		FCF45F062C1A66630067389C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FCF45F0B2C1A68520067389C /* ViewState.swift */,
 				FCF45F0D2C1A819C0067389C /* NavigationRouter.swift */,
 				FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */,
 				FCF45F132C1A90800067389C /* MealDetailsView-ViewModel.swift */,
-				FC2BD5052C1BFC8E00E4A713 /* CategoryView-ViewModel.swift */,
+				FC2BD5052C1BFC8E00E4A713 /* SettingsView-ViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -403,14 +403,15 @@
 				FCF45F142C1A90800067389C /* MealDetailsView-ViewModel.swift in Sources */,
 				FCF45F0C2C1A68520067389C /* ViewState.swift in Sources */,
 				FC4AD32E2C19171D000EDBB2 /* Meal.swift in Sources */,
-				FC2BD5062C1BFC8E00E4A713 /* CategoryView-ViewModel.swift in Sources */,
+				FC2BD5062C1BFC8E00E4A713 /* SettingsView-ViewModel.swift in Sources */,
 				FCF45F082C1A669A0067389C /* MealsView.swift in Sources */,
 				FCF45F122C1A84240067389C /* MealDetailsView.swift in Sources */,
 				FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */,
 				FC8A73042C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift in Sources */,
-				FC2BD5042C1BFC5200E4A713 /* CategoryView.swift in Sources */,
+				FC2BD5042C1BFC5200E4A713 /* SettingsView.swift in Sources */,
 				FC4AD3352C192DD0000EDBB2 /* Network.swift in Sources */,
 				FCB497A32C1BD95F00ECDBBC /* MealCategory.swift in Sources */,
+				FC2C33402C1DDA69006FDF04 /* MealSortOrder.swift in Sources */,
 				FC4AD3302C19228E000EDBB2 /* MealItem+Extension.swift in Sources */,
 				FC8A73062C1D0D8F00E9FCB4 /* ErrorView.swift in Sources */,
 				FCF45F102C1A82F40067389C /* RootView.swift in Sources */,
@@ -429,7 +430,6 @@
 				FCB4979F2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift in Sources */,
 				FC4AD33B2C19398C000EDBB2 /* MockSession.swift in Sources */,
 				FCB4979B2C1BA4FF00ECDBBC /* NetworkProviderTests.swift in Sources */,
-				FC2BD5082C1C054300E4A713 /* CategoryView-ViewModelTests.swift in Sources */,
 				FCB497A12C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift in Sources */,
 				FC4AD3382C193944000EDBB2 /* NetworkTests.swift in Sources */,
 				FC4AD33F2C1955DE000EDBB2 /* MockNetworkProvider.swift in Sources */,

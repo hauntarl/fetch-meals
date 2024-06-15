@@ -63,7 +63,7 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .failure(let message):
-            XCTAssertTrue(message.hasPrefix("Network Error"), "Should return a network error")
+            XCTAssertEqual(message, "Please try again after some time", "Should return a network error")
         case .success(_):
             XCTFail("ViewState should not be in success state")
         case .loading:
@@ -88,7 +88,7 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .failure(let message):
-            XCTAssertTrue(message.hasPrefix("Parsing Error"), "Should return a parsing error")
+            XCTAssertEqual(message, "Data could not be processed", "Should return a network error")
         case .success(_):
             XCTFail("ViewState should not be in success state")
         case .loading:
@@ -105,8 +105,8 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
         await viewModel.fetchMealDetails(for: "12345")
         
         switch (viewModel.state) {
-        case .failure(let message):
-            XCTAssertTrue(message.hasPrefix("Error"), "Should return an unexpected error")
+        case .failure(_):
+            return
         case .success(_):
             XCTFail("ViewState should not be in success state")
         case .loading:

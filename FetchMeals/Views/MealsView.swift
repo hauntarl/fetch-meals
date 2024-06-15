@@ -10,7 +10,7 @@ import SwiftUI
 /// Displays the list of meals for the selected category
 public struct MealsView: View {
     @EnvironmentObject var router: NavigationRouter
-    @EnvironmentObject var categoryViewModel: CategoryView.ViewModel
+    @EnvironmentObject var settingsViewModel: SettingsView.ViewModel
     @StateObject var viewModel: ViewModel
     
     public init(_ viewModel: ViewModel = .init()) {
@@ -24,8 +24,8 @@ public struct MealsView: View {
                 progress
                     .transition(.opacity)
                     .zIndex(1)
-            case .success(let meals):
-                content(for: meals)
+            case .success(_):
+                content
                     .transition(.asymmetric(
                         insertion: .move(edge: .trailing),
                         removal: .move(edge: .leading)
@@ -38,37 +38,59 @@ public struct MealsView: View {
             }
         }
         .animation(.easeOut, value: viewModel.state)
-        .environmentObject(categoryViewModel)
-        .onReceive(categoryViewModel.$category, perform: onChange(category:))
+        .environmentObject(settingsViewModel)
     }
     
     private var progress: some View {
         ProgressView()
             .task {
                 viewModel.state = .loading
-                await viewModel.fetchMeals(for: categoryViewModel.category)
+                await viewModel.fetchMeals(for: settingsViewModel.category)
             }
     }
     
-    private func content(for meals: [MealItem]) -> some View {
-        return List(viewModel.filtered(meals), rowContent: buildRow(for:))
+    private var content: some View {
+        return List(viewModel.meals, rowContent: buildRow(for:))
+            .scrollIndicators(.hidden)
+            .scrollDismissesKeyboard(.interactively)
+            .navigationTitle(settingsViewModel.category.rawValue)
+            .navigationBarTitleDisplayMode(.large)
+            .animation(.easeOut, value: viewModel.meals)
+            .animation(.easeOut, value: viewModel.searchText)
+            .toolbar {
+                toolbarContent
+            }
+            .refreshable {
+                await viewModel.fetchMeals(for: settingsViewModel.category)
+            }
             .searchable(
                 text: $viewModel.searchText,
                 prompt: "What are you craving for?"
             )
-            .refreshable {
-                await viewModel.fetchMeals(for: categoryViewModel.category)
+            .onChange(of: viewModel.searchText) {
+                viewModel.filter()
             }
-            .scrollIndicators(.hidden)
-            .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(categoryViewModel.category.rawValue)
-            .navigationBarTitleDisplayMode(.large)
-            .animation(.easeOut, value: viewModel.searchText)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Category", systemImage: "gearshape.fill") {
-                        router.navigate(to: .categoryView)
-                    }
+            .onChange(of: viewModel.meals) {
+                viewModel.sortBy(
+                    key: settingsViewModel.sortKey,
+                    order: settingsViewModel.sortOrder
+                )
+            }
+            .onReceive(settingsViewModel.$sortKey) { newValue in
+                viewModel.sortBy(
+                    key: newValue,
+                    order: settingsViewModel.sortOrder
+                )
+            }
+            .onReceive(settingsViewModel.$sortOrder) { newValue in
+                viewModel.sortBy(
+                    key: settingsViewModel.sortKey,
+                    order: newValue
+                )
+            }
+            .onReceive(settingsViewModel.$category) { newValue in
+                Task {
+                    await viewModel.fetchMeals(for: newValue)
                 }
             }
     }
@@ -106,18 +128,21 @@ public struct MealsView: View {
         .foregroundStyle(.primary)
     }
     
-    private func error(with message: String) -> some View {
-        ErrorView(
-            title: "Couldn't fetch **\(categoryViewModel.category.rawValue)**",
-            message: message
-        ) {
-            viewModel.state = .loading
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button("Settings", systemImage: "gearshape.fill") {
+                router.navigate(to: .settingsView)
+            }
         }
     }
     
-    private func onChange(category: MealCategory) {
-        Task {
-            await viewModel.fetchMeals(for: category)
+    private func error(with message: String) -> some View {
+        ErrorView(
+            title: "Couldn't fetch **\(settingsViewModel.category.rawValue)**",
+            message: message
+        ) {
+            viewModel.state = .loading
         }
     }
 }
@@ -125,7 +150,7 @@ public struct MealsView: View {
 #Preview {
     struct MealsPreview: View {
         @StateObject private var router = NavigationRouter()
-        @StateObject private var categoryViewModel = CategoryView.ViewModel()
+        @StateObject private var settingsViewModel = SettingsView.ViewModel()
         
         var body: some View {
             NavigationStack(path: $router.path) {
@@ -136,8 +161,8 @@ public struct MealsView: View {
                 ))
                 .navigationDestination(for: NavigationRouter.Destination.self) {
                     switch ($0) {
-                    case .categoryView:
-                        CategoryView()
+                    case .settingsView:
+                        SettingsView()
                     case .mealDetailsView(let id, let name):
                         MealDetailsView(
                             id: id,
@@ -148,7 +173,7 @@ public struct MealsView: View {
                 }
             }
             .environmentObject(router)
-            .environmentObject(categoryViewModel)
+            .environmentObject(settingsViewModel)
         }
     }
     

@@ -43,7 +43,6 @@ public struct MealItem: Decodable, Identifiable, Equatable {
     }
 }
 
-
 /// A wrapper model required to correctly represent the structure of json response from
 /// the [themealdb.com](https://themealdb.com/api.php) api to fetch the list of all the
 /// meals.

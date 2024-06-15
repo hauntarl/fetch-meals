@@ -28,11 +28,11 @@ public extension MealDetailsView {
                 let result = try await network.fetchMealDetails(for: id)
                 state = .success(result: result)
             } catch is NetworkError {
-                state = .failure(message: "Network Error: Please try again after some time")
+                state = .failure(message: "Please try again after some time")
             } catch is DecodingError {
-                state = .failure(message: "Parsing Error: Data could not be processed")
+                state = .failure(message: "Data could not be processed")
             } catch {
-                state = .failure(message: "Error: \(error.localizedDescription)")
+                state = .failure(message: error.localizedDescription)
             }
         }
     }

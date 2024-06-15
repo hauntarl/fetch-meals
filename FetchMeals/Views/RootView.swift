@@ -10,7 +10,7 @@ import SwiftUI
 /// The root view of the application
 struct RootView: View {
     @StateObject private var router = NavigationRouter()
-    @StateObject var categoryViewModel = CategoryView.ViewModel()
+    @StateObject var settingsViewModel = SettingsView.ViewModel()
     
     @State private var showingMessage = true
     @State private var currentLayout = 0
@@ -63,7 +63,7 @@ struct RootView: View {
                 )
         }
         .environmentObject(router)
-        .environmentObject(categoryViewModel)
+        .environmentObject(settingsViewModel)
     }
     
     @ViewBuilder
@@ -71,8 +71,8 @@ struct RootView: View {
         switch value {
         case .mealDetailsView(let id, let name):
             MealDetailsView(id: id, name: name)
-        case .categoryView:
-            CategoryView()
+        case .settingsView:
+            SettingsView()
         }
     }
     
