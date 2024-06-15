@@ -8,6 +8,7 @@
 import SwiftUI
 import WebKit
 
+/// Creates a basic web view, used to display the meals source recipe
 struct WebView: UIViewRepresentable {
     let url: URL
     

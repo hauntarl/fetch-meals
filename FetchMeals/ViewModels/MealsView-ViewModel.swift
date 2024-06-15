@@ -9,16 +9,20 @@ import Observation
 import SwiftUI
 
 public extension MealsView {
-    class ViewModel: ObservableObject {
+    /// Responsible for managing the state of `MealsView` and providing
+    /// the list of meals
+    final class ViewModel: ObservableObject {
         @Published public var state: ViewState<[MealItem]> = .loading
         @Published public var searchText: String = ""
         
         private let network: Network
         
+        /// Initializes the view model with provided Network object
         public init(network: Network = NetworkProvider.shared) {
             self.network = network
         }
         
+        /// Fetches meals for the given category and cleans it
         @MainActor
         public func fetchMeals(for category: MealCategory) async {
             do {
@@ -33,6 +37,7 @@ public extension MealsView {
             }
         }
         
+        /// Returns a filtered list of meals based on the current `searchText`
         @MainActor
         public func filtered(_ meals: [MealItem]) -> [MealItem] {
             searchText.isEmpty ? meals : meals.filter {
@@ -43,6 +48,7 @@ public extension MealsView {
 }
 
 extension Array where Element == MealItem {
+    /// Removes meals with missing data
     func clean() -> [Element] {
         lazy.filter { item in
             !item.id.isEmpty 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Creates a generic, reusable error view
 struct ErrorView: View {
     let title: LocalizedStringKey
     let message: String

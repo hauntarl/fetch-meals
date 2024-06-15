@@ -11,10 +11,11 @@ import SwiftUI
 struct RootView: View {
     @StateObject private var router = NavigationRouter()
     @StateObject var categoryViewModel = CategoryView.ViewModel()
-    @State private var showingWelcomeMessage = true
+    
+    @State private var showingMessage = true
     @State private var currentLayout = 0
 
-    private let letters = "Making Fetch Happen..."
+    private let letters = "Lets Make Fetch Happen."
         .split(separator: " ")
         .map { $0.split(separator: "").map { String($0) } }
     private let layouts = [
@@ -26,20 +27,23 @@ struct RootView: View {
     }
     
     var body: some View {
-        if showingWelcomeMessage {
-            welcomeMessage
+        if showingMessage {
+            message
+                .transition(.move(edge: .leading))
         }
         else {
-            meals
+            content
+                .transition(.move(edge: .trailing))
         }
     }
     
-    private var welcomeMessage: some View {
+    private var message: some View {
         layout {
             ForEach(0..<letters.count, id: \.self) { i in
                 GridRow {
                     ForEach(0..<letters[i].count, id: \.self) { j in
                         Text(letters[i][j])
+                            .frame(width: 30, height: 30)
                     }
                 }
             }
@@ -50,7 +54,7 @@ struct RootView: View {
         .onAppear(perform: transition)
     }
     
-    private var meals: some View {
+    private var content: some View {
         NavigationStack(path: $router.path) {
             MealsView()
                 .navigationDestination(
@@ -62,24 +66,6 @@ struct RootView: View {
         .environmentObject(categoryViewModel)
     }
     
-    private func transition() {
-        withAnimation(
-            .bouncy(duration: 0.5)
-            .repeatForever(autoreverses: true)
-            .delay(0.25)
-        ) {
-            currentLayout = 1
-        }
-        
-        Task {
-            try? await Task.sleep(for: .seconds(2))
-            withAnimation(.easeOut) {
-                showingWelcomeMessage = false
-            }
-        }
-    }
-    
-    /// Navigation destination controller
     @ViewBuilder
     private func destination(for value: NavigationRouter.Destination) -> some View {
         switch value {
@@ -87,6 +73,22 @@ struct RootView: View {
             MealDetailsView(id: id, name: name)
         case .categoryView:
             CategoryView()
+        }
+    }
+    
+    private func transition() {
+        withAnimation(
+            .easeOut(duration: 0.75)
+            .delay(0.25)
+        ) {
+            currentLayout = 1
+        }
+        
+        Task {
+            try? await Task.sleep(for: .seconds(1))
+            withAnimation(.easeOut) {
+                showingMessage = false
+            }
         }
     }
 }

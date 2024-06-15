@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// This model controls the the app's navigation stack
-class NavigationRouter: ObservableObject {
+final class NavigationRouter: ObservableObject {
     @Published var path = NavigationPath()
     
     enum Destination: Hashable {

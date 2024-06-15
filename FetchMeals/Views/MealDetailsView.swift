@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays meal details for the provided meal id
 public struct MealDetailsView: View {
     @EnvironmentObject var router: NavigationRouter
     @StateObject var viewModel: ViewModel
@@ -14,14 +15,14 @@ public struct MealDetailsView: View {
     @State var areInstructionsExpanded = false
     @State var recipeURL: URL?
     
-    private let id: String
-    private let name: String
-    
     public init(id: String, name: String, _ viewModel: ViewModel = .init()) {
         self.id = id
         self.name = name
         _viewModel = StateObject(wrappedValue: viewModel)
     }
+
+    private let id: String
+    private let name: String
     
     public var body: some View {
         ZStack {
@@ -94,6 +95,12 @@ public struct MealDetailsView: View {
     }
 }
 
+// Make URL conform to Identifiable protocol so that it can be used with
+// the .sheet() modifier.
+extension URL: Identifiable {
+    public var id: String { self.absoluteString }
+}
+
 #Preview {
     struct MealDetailsPreview: View {
         var body: some View {
@@ -111,10 +118,4 @@ public struct MealDetailsView: View {
     
     return MealDetailsPreview()
         .preferredColorScheme(.dark)
-}
-
-/// Make `URL` conform to `Identifiable` protocol so that it can be used with
-/// the `.sheet()` modifier.
-extension URL: Identifiable {
-    public var id: String { self.absoluteString }
 }

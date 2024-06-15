@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// A mock network provider used across previews, responsible for providing
+/// necessary data to the view models
 final class PreviewNetworkProvider: Network {
     var session: any Session = PreviewSession()
     
@@ -33,6 +35,7 @@ final class PreviewNetworkProvider: Network {
     }
 }
 
+/// A mock session for the `PreviewNetworkProvider`
 final class PreviewSession: Session {
     func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
         (.init(), .init())

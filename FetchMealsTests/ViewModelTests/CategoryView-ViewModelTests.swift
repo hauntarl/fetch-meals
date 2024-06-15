@@ -14,7 +14,7 @@ final class CategoryView_ViewModelTests: XCTestCase {
     func testUpdateCategory_ToSeafood() async throws {
         let viewModel = CategoryView.ViewModel()
         
-        await viewModel.update(category: .seafood)
+        viewModel.update(category: .seafood)
         XCTAssertEqual(viewModel.category, .seafood, "Category should be updated to Seafood")
     }
 

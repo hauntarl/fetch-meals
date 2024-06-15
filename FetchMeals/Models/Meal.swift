@@ -110,7 +110,9 @@ public struct Meal: Decodable, Equatable {
             } else if key.stringValue.hasPrefix(DynamicKeys.measurePrefix) {
                 let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: key)?
                     .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                measures[String(key.stringValue.trimmingPrefix(DynamicKeys.measurePrefix))] = measure
+                if !measure.isEmpty {
+                    measures[String(key.stringValue.trimmingPrefix(DynamicKeys.measurePrefix))] = measure
+                }
             }
         }
      

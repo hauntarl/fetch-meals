@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Displays the list of meals for the selected category
 public struct MealsView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var categoryViewModel: CategoryView.ViewModel
@@ -25,12 +26,10 @@ public struct MealsView: View {
                     .zIndex(1)
             case .success(let meals):
                 content(for: meals)
-                    .transition(
-                        .asymmetric(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading)
-                        )
-                    )
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
                     .zIndex(2)
             case .failure(let message):
                 error(with: message)
@@ -109,7 +108,7 @@ public struct MealsView: View {
     
     private func error(with message: String) -> some View {
         ErrorView(
-            title: "Couldn't fetch **\(categoryViewModel.category.rawValue)",
+            title: "Couldn't fetch **\(categoryViewModel.category.rawValue)**",
             message: message
         ) {
             viewModel.state = .loading
@@ -132,7 +131,7 @@ public struct MealsView: View {
             NavigationStack(path: $router.path) {
                 MealsView(MealsView.ViewModel(
                     network: PreviewNetworkProvider(
-                        error: nil
+                        error: nil  // Set an error to test the error state
                     )
                 ))
                 .navigationDestination(for: NavigationRouter.Destination.self) {

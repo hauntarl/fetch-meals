@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Allows the user to change the meal category
 public struct CategoryView: View {
     @EnvironmentObject var router: NavigationRouter
     @EnvironmentObject var viewModel: ViewModel
@@ -19,16 +20,15 @@ public struct CategoryView: View {
     
     private func buildRow(for category: MealCategory) -> some View {
         Button {
-            defer {
-                Task {
-                    try? await Task.sleep(for: .seconds(0.4))
-                    router.dismiss()
-                }
-            }
             guard viewModel.category != category else {
                 return
             }
+            
             viewModel.update(category: category)
+            Task {
+                try? await Task.sleep(for: .seconds(0.4))
+                router.dismiss()
+            }
         } label: {
             HStack {
                 viewModel.category != category

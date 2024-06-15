@@ -9,12 +9,17 @@ import Observation
 import SwiftUI
 
 public extension CategoryView {
-    class ViewModel: ObservableObject {
-        @Published public var category: MealCategory = .dessert
+    /// Responsible for managing the state of `CategoryView` by providing
+    /// the currently selected category
+    final class ViewModel: ObservableObject {
+        @Published public var category: MealCategory
         
-        public init() {}
+        /// Initializes the view model with the given category
+        public init(category: MealCategory = .dessert) {
+            self.category = category
+        }
         
-        @MainActor
+        /// Updates the selected category with the new value
         public func update(category: MealCategory) {
             self.category = category
         }
