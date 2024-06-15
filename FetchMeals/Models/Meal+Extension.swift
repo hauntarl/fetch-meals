@@ -22,13 +22,13 @@ public extension Meal {
         try! JSONDecoder().decode(MealWrapper.self, from: sampleWithVariableIngredientsJSON).meals.first!
     }()
     
-    static let sampleJSON = """
+    static let sampleJSON = #"""
     {
         "meals": [
             {
               "strMeal": "Chocolate Gateau",
               "strArea": "French",
-              "strInstructions": "Preheat the oven to 180°C/350°F/Gas Mark 4.",
+              "strInstructions": "Step 1\r\nStep 2\r\nStep 3",
               "strMealThumb": "https://www.themealdb.com/images/media/meals/tqtywx1468317395.jpg",
               "strTags": "Cake,Chocolate,Desert,Pudding",
               "strYoutube": "https://www.youtube.com/watch?v=dsJtgmAhFF4",
@@ -76,7 +76,7 @@ public extension Meal {
             }
         ]
     }
-    """.data(using: .utf8)!
+    """#.data(using: .utf8)!
     
     static let sampleWithDuplicatesJSON = """
     {
