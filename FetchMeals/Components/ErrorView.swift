@@ -16,7 +16,9 @@ struct ErrorView: View {
         ContentUnavailableView {
             VStack(spacing: 20) {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 60))
+                    .font(.system(size: 80))
+                    .foregroundStyle(.accent)
+                    
                 Text(title)
                     .font(.title)
             }

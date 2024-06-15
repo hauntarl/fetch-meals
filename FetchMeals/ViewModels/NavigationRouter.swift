@@ -13,7 +13,7 @@ class NavigationRouter: ObservableObject {
     
     enum Destination: Hashable {
         case categoryView
-        case mealDetailsView(id: String)
+        case mealDetailsView(id: String, name: String)
     }
     
     /// Convenience wrapper to restrict navigation to only `Destination` type,

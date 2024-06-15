@@ -101,7 +101,7 @@ public struct MealsView: View {
                 
                 Image(systemName: "chevron.right")
                     .font(.body)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.accent)
             }
         }
         .foregroundStyle(.primary)
@@ -109,11 +109,10 @@ public struct MealsView: View {
     
     private func error(with message: String) -> some View {
         ErrorView(
-            title: "Couldn't fetch **\(categoryViewModel.category.rawValue)**",
+            title: "Couldn't fetch **\(categoryViewModel.category.rawValue)",
             message: message
         ) {
             viewModel.state = .loading
-            await viewModel.fetchMeals(for: categoryViewModel.category)
         }
     }
     

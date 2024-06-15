@@ -44,6 +44,7 @@ struct RootView: View {
                 }
             }
         }
+        .foregroundStyle(.accent)
         .font(.largeTitle)
         .bold()
         .onAppear(perform: transition)
@@ -82,8 +83,8 @@ struct RootView: View {
     @ViewBuilder
     private func destination(for value: NavigationRouter.Destination) -> some View {
         switch value {
-        case .mealDetailsView(let id):
-            MealDetailsView(id: id)
+        case .mealDetailsView(let id, let name):
+            MealDetailsView(id: id, name: name)
         case .categoryView:
             CategoryView()
         }

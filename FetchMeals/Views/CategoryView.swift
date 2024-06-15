@@ -21,7 +21,7 @@ public struct CategoryView: View {
         Button {
             defer {
                 Task {
-                    try? await Task.sleep(for: .seconds(0.5))
+                    try? await Task.sleep(for: .seconds(0.4))
                     router.dismiss()
                 }
             }
@@ -34,7 +34,7 @@ public struct CategoryView: View {
                 viewModel.category != category
                 ? nil
                 : Image(systemName: "checkmark.seal.fill")
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(.accent)
                     .transition(.blurReplace.combined(with: .scale))
 
                 Text(category.rawValue)
