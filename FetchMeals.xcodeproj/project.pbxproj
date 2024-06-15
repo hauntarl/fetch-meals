@@ -11,6 +11,7 @@
 		FC2BD5042C1BFC5200E4A713 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5032C1BFC5200E4A713 /* CategoryView.swift */; };
 		FC2BD5062C1BFC8E00E4A713 /* CategoryView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5052C1BFC8E00E4A713 /* CategoryView-ViewModel.swift */; };
 		FC2BD5082C1C054300E4A713 /* CategoryView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BD5072C1C054300E4A713 /* CategoryView-ViewModelTests.swift */; };
+		FC2CA5A62C1D4130007898EE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */; };
 		FC4AD32A2C190FF2000EDBB2 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD3292C190FF1000EDBB2 /* MealItem.swift */; };
 		FC4AD32C2C190FFA000EDBB2 /* Meal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */; };
 		FC4AD32E2C19171D000EDBB2 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32D2C19171D000EDBB2 /* Meal.swift */; };
@@ -64,6 +65,7 @@
 		FC2BD5032C1BFC5200E4A713 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		FC2BD5052C1BFC8E00E4A713 /* CategoryView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryView-ViewModel.swift"; sourceTree = "<group>"; };
 		FC2BD5072C1C054300E4A713 /* CategoryView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryView-ViewModelTests.swift"; sourceTree = "<group>"; };
+		FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FC4AD3292C190FF1000EDBB2 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
 		FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+Extension.swift"; sourceTree = "<group>"; };
 		FC4AD32D2C19171D000EDBB2 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				FC8F6A7A2C190B0E00D9A975 /* FetchMealsApp.swift */,
 				FC8F6A7E2C190B1000D9A975 /* Assets.xcassets */,
 				FC8F6A802C190B1000D9A975 /* Preview Content */,
+				FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */,
 			);
 			path = FetchMeals;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC2CA5A62C1D4130007898EE /* Launch Screen.storyboard in Resources */,
 				FC8F6A822C190B1000D9A975 /* Preview Assets.xcassets in Resources */,
 				FC8F6A7F2C190B1000D9A975 /* Assets.xcassets in Resources */,
 			);
@@ -587,9 +591,11 @@
 				DEVELOPMENT_TEAM = N477T5ZBLS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FetchMeals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
@@ -619,9 +625,11 @@
 				DEVELOPMENT_TEAM = N477T5ZBLS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FetchMeals/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
