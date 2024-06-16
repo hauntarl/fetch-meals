@@ -53,7 +53,7 @@ public struct MealsView: View {
         return List(viewModel.meals, rowContent: buildRow(for:))
             .scrollIndicators(.hidden)
             .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(settingsViewModel.category.rawValue)
+            .navigationTitle(settingsViewModel.category.name)
             .navigationBarTitleDisplayMode(.large)
             .animation(.easeOut, value: viewModel.meals)
             .animation(.easeOut, value: viewModel.searchText)
@@ -139,7 +139,7 @@ public struct MealsView: View {
     
     private func error(with message: String) -> some View {
         ErrorView(
-            title: "Couldn't fetch **\(settingsViewModel.category.rawValue)**",
+            title: "Couldn't fetch **\(settingsViewModel.category.name)**",
             message: message
         ) {
             viewModel.state = .loading
@@ -150,7 +150,9 @@ public struct MealsView: View {
 #Preview {
     struct MealsPreview: View {
         @StateObject private var router = NavigationRouter()
-        @StateObject private var settingsViewModel = SettingsView.ViewModel()
+        @StateObject private var settingsViewModel = SettingsView.ViewModel(
+            network: PreviewNetworkProvider()
+        )
         
         var body: some View {
             NavigationStack(path: $router.path) {
@@ -174,6 +176,9 @@ public struct MealsView: View {
             }
             .environmentObject(router)
             .environmentObject(settingsViewModel)
+            .task {
+                await settingsViewModel.fetchCategories()
+            }
         }
     }
     

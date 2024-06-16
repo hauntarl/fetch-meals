@@ -13,15 +13,16 @@
 		FC2C33402C1DDA69006FDF04 /* MealSortOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */; };
 		FC2CA5A62C1D4130007898EE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */; };
 		FC4AD32A2C190FF2000EDBB2 /* MealItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD3292C190FF1000EDBB2 /* MealItem.swift */; };
-		FC4AD32C2C190FFA000EDBB2 /* Meal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */; };
+		FC4AD32C2C190FFA000EDBB2 /* Meal+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32B2C190FFA000EDBB2 /* Meal+Samples.swift */; };
 		FC4AD32E2C19171D000EDBB2 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32D2C19171D000EDBB2 /* Meal.swift */; };
-		FC4AD3302C19228E000EDBB2 /* MealItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32F2C19228E000EDBB2 /* MealItem+Extension.swift */; };
+		FC4AD3302C19228E000EDBB2 /* MealItem+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD32F2C19228E000EDBB2 /* MealItem+Samples.swift */; };
 		FC4AD3332C192C6C000EDBB2 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD3322C192C6C000EDBB2 /* Session.swift */; };
 		FC4AD3352C192DD0000EDBB2 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD3342C192DD0000EDBB2 /* Network.swift */; };
 		FC4AD3382C193944000EDBB2 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD3372C193944000EDBB2 /* NetworkTests.swift */; };
 		FC4AD33B2C19398C000EDBB2 /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33A2C19398C000EDBB2 /* MockSession.swift */; };
 		FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33C2C194B88000EDBB2 /* NetworkProvider.swift */; };
 		FC4AD33F2C1955DE000EDBB2 /* MockNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */; };
+		FC786E732C1E64D10045D392 /* MealCategory+Samples.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC786E722C1E64D10045D392 /* MealCategory+Samples.swift */; };
 		FC8A73042C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8A73032C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift */; };
 		FC8A73062C1D0D8F00E9FCB4 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8A73052C1D0D8F00E9FCB4 /* ErrorView.swift */; };
 		FC8A73092C1D18FC00E9FCB4 /* MealDetailsView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8A73082C1D18FC00E9FCB4 /* MealDetailsView+Extension.swift */; };
@@ -67,15 +68,16 @@
 		FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSortOrder.swift; sourceTree = "<group>"; };
 		FC2CA5A52C1D4130007898EE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FC4AD3292C190FF1000EDBB2 /* MealItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItem.swift; sourceTree = "<group>"; };
-		FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+Extension.swift"; sourceTree = "<group>"; };
+		FC4AD32B2C190FFA000EDBB2 /* Meal+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+Samples.swift"; sourceTree = "<group>"; };
 		FC4AD32D2C19171D000EDBB2 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
-		FC4AD32F2C19228E000EDBB2 /* MealItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealItem+Extension.swift"; sourceTree = "<group>"; };
+		FC4AD32F2C19228E000EDBB2 /* MealItem+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealItem+Samples.swift"; sourceTree = "<group>"; };
 		FC4AD3322C192C6C000EDBB2 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		FC4AD3342C192DD0000EDBB2 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		FC4AD3372C193944000EDBB2 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		FC4AD33A2C19398C000EDBB2 /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 		FC4AD33C2C194B88000EDBB2 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProvider.swift; sourceTree = "<group>"; };
+		FC786E722C1E64D10045D392 /* MealCategory+Samples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealCategory+Samples.swift"; sourceTree = "<group>"; };
 		FC8A73032C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewNetworkProvider.swift; sourceTree = "<group>"; };
 		FC8A73052C1D0D8F00E9FCB4 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		FC8A73082C1D18FC00E9FCB4 /* MealDetailsView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealDetailsView+Extension.swift"; sourceTree = "<group>"; };
@@ -130,10 +132,11 @@
 			isa = PBXGroup;
 			children = (
 				FC4AD3292C190FF1000EDBB2 /* MealItem.swift */,
-				FC4AD32F2C19228E000EDBB2 /* MealItem+Extension.swift */,
+				FC4AD32F2C19228E000EDBB2 /* MealItem+Samples.swift */,
 				FC4AD32D2C19171D000EDBB2 /* Meal.swift */,
-				FC4AD32B2C190FFA000EDBB2 /* Meal+Extension.swift */,
+				FC4AD32B2C190FFA000EDBB2 /* Meal+Samples.swift */,
 				FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */,
+				FC786E722C1E64D10045D392 /* MealCategory+Samples.swift */,
 				FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */,
 				FCF45F0B2C1A68520067389C /* ViewState.swift */,
 			);
@@ -409,15 +412,16 @@
 				FC4AD33D2C194B88000EDBB2 /* NetworkProvider.swift in Sources */,
 				FC8A73042C1CFF9300E9FCB4 /* PreviewNetworkProvider.swift in Sources */,
 				FC2BD5042C1BFC5200E4A713 /* SettingsView.swift in Sources */,
+				FC786E732C1E64D10045D392 /* MealCategory+Samples.swift in Sources */,
 				FC4AD3352C192DD0000EDBB2 /* Network.swift in Sources */,
 				FCB497A32C1BD95F00ECDBBC /* MealCategory.swift in Sources */,
 				FC2C33402C1DDA69006FDF04 /* MealSortOrder.swift in Sources */,
-				FC4AD3302C19228E000EDBB2 /* MealItem+Extension.swift in Sources */,
+				FC4AD3302C19228E000EDBB2 /* MealItem+Samples.swift in Sources */,
 				FC8A73062C1D0D8F00E9FCB4 /* ErrorView.swift in Sources */,
 				FCF45F102C1A82F40067389C /* RootView.swift in Sources */,
 				FC4AD32A2C190FF2000EDBB2 /* MealItem.swift in Sources */,
 				FC8A73092C1D18FC00E9FCB4 /* MealDetailsView+Extension.swift in Sources */,
-				FC4AD32C2C190FFA000EDBB2 /* Meal+Extension.swift in Sources */,
+				FC4AD32C2C190FFA000EDBB2 /* Meal+Samples.swift in Sources */,
 				FC8F6A7B2C190B0E00D9A975 /* FetchMealsApp.swift in Sources */,
 				FC0A64812C1D2A2800663EE9 /* WebView.swift in Sources */,
 			);

@@ -33,6 +33,8 @@ public protocol Network {
     /// Executes an HTTP GET request to fetch meal details for the provided meal id.
     func fetchMealDetails(for id: String) async throws -> Meal
     
+    /// Executes an HTTP GET request to fetch meal categories.
+    func fetchCategories() async throws -> [MealCategory]
 }
 
 public extension Network {

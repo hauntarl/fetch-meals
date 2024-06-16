@@ -28,7 +28,7 @@ public extension MealsView {
         @MainActor
         public func fetchMeals(for category: MealCategory) async {
             do {
-                let response = try await network.fetchMeals(for: category.rawValue)
+                let response = try await network.fetchMeals(for: category.name)
                 result = response.cleaned()
                 meals = result
                 state = .success(result: meals)

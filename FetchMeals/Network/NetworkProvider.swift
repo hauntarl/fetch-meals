@@ -62,4 +62,18 @@ public final class NetworkProvider: Network {
         }
         return meal
     }
+    
+    public func fetchCategories() async throws -> [MealCategory] {
+        let url = try buildURL(
+            for: "categories.php",
+            relativeTo: baseURL,
+            queryItems: []
+        )
+        
+        let result: MealCategoryWrapper = try await fetch(
+            from: url,
+            headers: ["Accept": "application/json"]
+        )
+        return result.categories
+    }
 }

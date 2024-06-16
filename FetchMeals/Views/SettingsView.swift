@@ -23,7 +23,7 @@ public struct SettingsView: View {
             }
             
             Section("Categories") {
-                ForEach(MealCategory.allCases, content: buildRow(for:))
+                ForEach(viewModel.categories, content: buildRow(for:))
             }
         }
         .navigationTitle("Settings")
@@ -49,7 +49,7 @@ public struct SettingsView: View {
                     .foregroundStyle(.accent)
                     .transition(.blurReplace.combined(with: .scale))
                 
-                Text(category.rawValue)
+                Text(category.name)
             }
         }
         .foregroundStyle(.primary)
@@ -112,12 +112,15 @@ public struct SettingsView: View {
 #Preview {
     struct SettingsPreview: View {
         @StateObject private var router = NavigationRouter()
-        @StateObject private var viewModel = SettingsView.ViewModel()
+        @StateObject private var viewModel = SettingsView.ViewModel(network: PreviewNetworkProvider())
         
         var body: some View {
-            return SettingsView()
+            SettingsView()
                 .environmentObject(viewModel)
                 .environmentObject(router)
+                .task {
+                    await viewModel.fetchCategories()
+                }
         }
     }
     

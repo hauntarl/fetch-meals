@@ -29,4 +29,9 @@ final class MockNetworkProvider: Network {
         let result: MealWrapper = try await fetch(from: NetworkURL.base, headers: [:])
         return result.meals.first!
     }
+    
+    func fetchCategories() async throws -> [MealCategory] {
+        let result: MealCategoryWrapper = try await fetch(from: NetworkURL.base, headers: [:])
+        return result.categories
+    }
 }

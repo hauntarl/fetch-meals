@@ -33,6 +33,13 @@ final class PreviewNetworkProvider: Network {
         }
         return Meal.sample
     }
+    
+    func fetchCategories() async throws -> [MealCategory] {
+        if let error {
+            throw error
+        }
+        return MealCategory.sample
+    }
 }
 
 /// A mock session for the `PreviewNetworkProvider`

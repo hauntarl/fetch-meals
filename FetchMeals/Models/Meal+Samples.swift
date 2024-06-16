@@ -1,5 +1,5 @@
 //
-//  Samples.swift
+//  Meal+Samples.swift
 //  FetchMeals
 //
 //  Created by Sameer Mungole on 6/11/24.
