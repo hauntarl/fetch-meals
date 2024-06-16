@@ -85,8 +85,6 @@ struct RootView: View {
         }
         
         Task {
-            await settingsViewModel.fetchCategories()
-            
             try? await Task.sleep(for: .seconds(1))
             withAnimation(.easeOut) {
                 showingMessage = false

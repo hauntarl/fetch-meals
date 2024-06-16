@@ -143,9 +143,9 @@ final class NetworkTests: XCTestCase {
     
     /// Test successful `fetch` request, aims to run the protocol's default implementation
     func testFetch_Success() async throws {
-        let expected = Meal.sample
+        let expected = MealItemWrapper.sampleNull
         session = MockSession(
-            data: Meal.sampleJSON,
+            data: MealItemWrapper.sampleNullJSON,
             response: HTTPURLResponse(
                 url: NetworkURL.base,
                 statusCode: Http.Status.ok,
@@ -155,8 +155,8 @@ final class NetworkTests: XCTestCase {
         )
         network = MockNetworkProvider(session: session)
         
-        let got: MealWrapper = try await network.fetch(from: NetworkURL.base, headers: [:])
-        XCTAssertEqual(got.meals.first, expected, "The meal items should be equal.")
+        let got: MealItemWrapper = try await network.fetch(from: NetworkURL.base, headers: [:])
+        XCTAssertEqual(got, expected, "The meal items should be equal.")
     }
     
     /// Test unexpected success status code, aims to run the protocol's default implementation

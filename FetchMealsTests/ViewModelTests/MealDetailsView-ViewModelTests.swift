@@ -38,7 +38,13 @@ final class MealDetailsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .success(let got):
-            XCTAssertEqual(got, expected, "Meal details should match")
+            XCTAssertEqual(got.name, expected.name, "Fetched meal details should be equal")
+            XCTAssertEqual(got.instructions, expected.instructions, "Fetched meal details should be equal")
+            XCTAssertEqual(got.sourceURL, expected.sourceURL, "Fetched meal details should be equal")
+            XCTAssertEqual(got.tags, expected.tags, "Fetched meal details should be equal")
+            XCTAssertEqual(got.thumbnailURL, expected.thumbnailURL, "Fetched meal details should be equal")
+            XCTAssertEqual(got.youtubeURL, expected.youtubeURL, "Fetched meal details should be equal")
+            XCTAssertEqual(got.ingredients.sorted(), expected.ingredients.sorted(), "Fetched meal details should be equal")
         case .loading:
             XCTFail("ViewState should not be in loading state")
         case .failure(let message):

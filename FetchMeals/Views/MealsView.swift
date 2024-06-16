@@ -143,6 +143,7 @@ public struct MealsView: View {
             message: message
         ) {
             viewModel.state = .loading
+            await viewModel.fetchMeals(for: settingsViewModel.category)
         }
     }
 }

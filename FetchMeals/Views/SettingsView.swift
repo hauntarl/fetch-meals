@@ -28,6 +28,9 @@ public struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.large)
+        .task {
+            await viewModel.fetchCategories()
+        }
     }
     
     private func buildRow(for category: MealCategory) -> some View {

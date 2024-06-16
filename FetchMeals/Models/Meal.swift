@@ -132,15 +132,16 @@ public struct Meal: Decodable, Equatable {
 public struct Ingredient: Decodable, Equatable, Hashable, Comparable {
     public let name: String
     public let quantity: String
-    public let thumbnailURL: URL?
+    public var thumbnailURL: URL? {
+        .init(
+            string: "\(name.replacingOccurrences(of: " ", with: "-"))-Small.png",
+            relativeTo: NetworkURL.ingredient
+        )
+    }
     
     public init(name: String, quantity: String) {
         self.name = name
         self.quantity = quantity
-        self.thumbnailURL = .init(
-            string: "\(name.replacingOccurrences(of: " ", with: "-"))-Small.png",
-            relativeTo: NetworkURL.ingredient
-        )
     }
     
     public static func < (lhs: Ingredient, rhs: Ingredient) -> Bool {

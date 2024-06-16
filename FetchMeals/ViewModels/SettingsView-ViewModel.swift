@@ -29,7 +29,11 @@ public extension SettingsView {
         
         private let network: Network
         
+        @MainActor
         public func fetchCategories() async {
+            guard categories.isEmpty else {
+                return
+            }
             guard let response = try? await network.fetchCategories() else {
                 return
             }

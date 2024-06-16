@@ -48,6 +48,7 @@ extension MealDetailsView {
         )
         ForEach(steps, id: \.self) { step in
             Text(step)
+                .font(.subheadline)
         }
         
         if instructions.count > 1 {

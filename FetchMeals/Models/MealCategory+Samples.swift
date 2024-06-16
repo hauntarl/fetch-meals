@@ -9,7 +9,7 @@
 
 import Foundation
 
-extension MealCategory {
+public extension MealCategory {
     static var sample: [Self] = {
         try! JSONDecoder().decode(MealCategoryWrapper.self, from: sampleJSON).categories
     }()

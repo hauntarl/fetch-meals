@@ -35,6 +35,7 @@
 		FCB4979F2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */; };
 		FCB497A12C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */; };
 		FCB497A32C1BD95F00ECDBBC /* MealCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */; };
+		FCC3AD4D2C1E6FA700E7C52D /* SettingsView-ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3AD4C2C1E6FA700E7C52D /* SettingsView-ViewModelTests.swift */; };
 		FCF45F082C1A669A0067389C /* MealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F072C1A669A0067389C /* MealsView.swift */; };
 		FCF45F0A2C1A66E60067389C /* MealsView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */; };
 		FCF45F0C2C1A68520067389C /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF45F0B2C1A68520067389C /* ViewState.swift */; };
@@ -94,6 +95,7 @@
 		FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModelTests.swift"; sourceTree = "<group>"; };
 		FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealDetailsView-ViewModelTests.swift"; sourceTree = "<group>"; };
 		FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCategory.swift; sourceTree = "<group>"; };
+		FCC3AD4C2C1E6FA700E7C52D /* SettingsView-ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView-ViewModelTests.swift"; sourceTree = "<group>"; };
 		FCF45F072C1A669A0067389C /* MealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsView.swift; sourceTree = "<group>"; };
 		FCF45F092C1A66E60067389C /* MealsView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealsView-ViewModel.swift"; sourceTree = "<group>"; };
 		FCF45F0B2C1A68520067389C /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				FCB4979E2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift */,
 				FCB497A02C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift */,
+				FCC3AD4C2C1E6FA700E7C52D /* SettingsView-ViewModelTests.swift */,
 			);
 			path = ViewModelTests;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 			files = (
 				FCB4979F2C1BB95500ECDBBC /* MealsView-ViewModelTests.swift in Sources */,
 				FC4AD33B2C19398C000EDBB2 /* MockSession.swift in Sources */,
+				FCC3AD4D2C1E6FA700E7C52D /* SettingsView-ViewModelTests.swift in Sources */,
 				FCB4979B2C1BA4FF00ECDBBC /* NetworkProviderTests.swift in Sources */,
 				FCB497A12C1BCFC000ECDBBC /* MealDetailsView-ViewModelTests.swift in Sources */,
 				FC4AD3382C193944000EDBB2 /* NetworkTests.swift in Sources */,
