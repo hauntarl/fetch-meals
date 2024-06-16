@@ -63,7 +63,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .success(let got):
-            XCTAssertTrue(got.isEmpty, "Only one meal is expected after cleaning")
+            XCTAssertTrue(got.isEmpty, "Zero meals are expected after cleaning")
         case .loading:
             XCTFail("ViewState should not be in loading state")
         case .failure(let message):

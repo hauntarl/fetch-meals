@@ -32,12 +32,10 @@ public struct MealDetailsView: View {
                     .zIndex(1)
             case .success(let meal):
                 content(for: meal)
-                    .transition(
-                        .asymmetric(
-                            insertion: .move(edge: .trailing),
-                            removal: .move(edge: .leading)
-                        )
-                    )
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
                     .zIndex(2)
             case .failure(let message):
                 error(with: message)
@@ -69,7 +67,7 @@ public struct MealDetailsView: View {
             }
             
             Section("Ingredients") {
-                content(for: meal.ingredients)
+                content(for: meal.ingredients.sorted())
             }
             
             Section("Instructions") {

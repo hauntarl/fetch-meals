@@ -104,22 +104,17 @@ public struct Meal: Decodable, Equatable {
             if key.stringValue.hasPrefix(DynamicKeys.ingredientPrefix) {
                 let ingredient = try dynamicContainer.decodeIfPresent(String.self, forKey: key)?
                     .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if !ingredient.isEmpty {
-                    ingredients[String(key.stringValue.trimmingPrefix(DynamicKeys.ingredientPrefix))] = ingredient
-                }
+                ingredients[String(key.stringValue.trimmingPrefix(DynamicKeys.ingredientPrefix))] = ingredient
             } else if key.stringValue.hasPrefix(DynamicKeys.measurePrefix) {
                 let measure = try dynamicContainer.decodeIfPresent(String.self, forKey: key)?
                     .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-                if !measure.isEmpty {
-                    measures[String(key.stringValue.trimmingPrefix(DynamicKeys.measurePrefix))] = measure
-                }
+                measures[String(key.stringValue.trimmingPrefix(DynamicKeys.measurePrefix))] = measure
             }
         }
      
-        // Remove duplicate ingredients
-        self.ingredients = Set(ingredients.map {
-            Ingredient(name: $0.value, quantity: measures[$0.key, default: ""])
-        }).sorted()
+        self.ingredients = ingredients.lazy
+            .filter { !$0.value.isEmpty }
+            .map { Ingredient(name: $0.value, quantity: measures[$0.key, default: ""]) }
     }
     
     private static func formatted(area: String, tags: [String]) -> String {

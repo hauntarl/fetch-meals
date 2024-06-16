@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public extension MealDetailsView {
     /// Responsible for managing the state of `MealDetailsView` and providing
     /// the meal details for given meal id
