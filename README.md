@@ -60,3 +60,21 @@ A native iOS app that allow users to browse meals from various categories using 
 
 - [App icon](https://www.pexels.com/photo/close-up-photo-of-dessert-on-top-of-the-jar-2638026/): Photo by *Anna Tukhfatullina* Food Photographer/Stylist.
 - Accent color `#FBA91A`: Orangish-yellow from [fetch.com](https://fetch.com/)'s logo
+
+> Notes:
+>
+> I applied to Fetch a few months back and received a take-home assessment, but I didn't proceed further
+> in the interview process due to missing some key requirements in my submission.
+>
+> I found the feedback extremely valuable and have since improved my knowledge of the SwiftUI framework
+> and applied it diligently in my future projects.
+>
+> The feedback for my previous submission: [github.com/hauntarl/desserts](https://github.com/hauntarl/desserts)
+> 
+> - Why focus on the UI when you won't be graded on it?
+> - How can you make decoding DessertDetail more scalable when the backend changes?
+> - How can you improve the NetworkManager? Should the view model be responsible for building API URLs?
+>
+> I have used this opportunity improve upon all the shortcomings from my previous submission.
+>
+> I'm eagerly looking forward to your review, hoping to "make fetch happen" (ref. Mean Girls)
