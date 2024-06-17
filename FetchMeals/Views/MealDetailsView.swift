@@ -67,7 +67,7 @@ public struct MealDetailsView: View {
             }
             
             Section("Ingredients") {
-                content(for: meal.ingredients.sorted())
+                content(for: meal.ingredients)
             }
             
             Section("Instructions") {

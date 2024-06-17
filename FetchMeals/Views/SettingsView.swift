@@ -46,11 +46,11 @@ public struct SettingsView: View {
             }
         } label: {
             HStack {
-                viewModel.category != category
-                ? nil
-                : Image(systemName: "checkmark.seal.fill")
+                viewModel.category == category
+                ? Image(systemName: "checkmark.seal.fill")
                     .foregroundStyle(.accent)
                     .transition(.blurReplace.combined(with: .scale))
+                : nil
                 
                 Text(category.name)
             }
@@ -72,11 +72,11 @@ public struct SettingsView: View {
             }
         } label: {
             HStack {
-                viewModel.sortKey != sortKey
-                ? nil
-                : Image(systemName: "checkmark.seal.fill")
+                viewModel.sortKey == sortKey
+                ? Image(systemName: "checkmark.seal.fill")
                     .foregroundStyle(.accent)
                     .transition(.blurReplace.combined(with: .scale))
+                : nil
                 
                 Text(sortKey.rawValue)
             }
@@ -98,12 +98,12 @@ public struct SettingsView: View {
             }
         } label: {
             HStack {
-                viewModel.sortOrder != sortOrder
-                ? nil
-                : Image(systemName: "checkmark.seal.fill")
+                viewModel.sortOrder == sortOrder
+                ? Image(systemName: "checkmark.seal.fill")
                     .foregroundStyle(.accent)
                     .transition(.blurReplace.combined(with: .scale))
-                
+                : nil
+
                 Text(sortOrder.rawValue)
             }
         }

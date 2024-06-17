@@ -4,6 +4,7 @@
 //
 //  Created by Sameer Mungole on 6/15/24.
 //
+//  A scalable solution to handle sorting meal items in the application
 
 import Foundation
 

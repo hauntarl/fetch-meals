@@ -13,6 +13,7 @@ public struct MealsView: View {
     @EnvironmentObject var settingsViewModel: SettingsView.ViewModel
     @StateObject var viewModel: ViewModel
     
+    /// Takes the view's view model as a parameter to allow mocking for previews
     public init(_ viewModel: ViewModel = .init()) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }

@@ -40,7 +40,7 @@ final class SettingsView_ViewModelTests: XCTestCase {
     }
     
     /// Test if fetch categories successfully handles errors
-    func testFetchCategories_Empty() async throws {
+    func testFetchCategories_Empty_AfterError() async throws {
         session = MockSession(error: MockError())
         network = MockNetworkProvider(session: session)
         viewModel = SettingsView.ViewModel(network: network)
@@ -50,4 +50,34 @@ final class SettingsView_ViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.categories.isEmpty, "Returned categories should be empty")
     }
 
+    /// Test if fetch categories successfully filters invalid categories
+    func testFetchCategories_Empty_AfterFiltering() async throws {
+        session = MockSession(
+            data: MealCategory.sampleEmptyAndNullJSON,
+            response: HTTPURLResponse(
+                url: NetworkURL.base,
+                statusCode: Http.Status.ok,
+                httpVersion: nil,
+                headerFields: nil
+            )!
+        )
+        network = MockNetworkProvider(session: session)
+        viewModel = SettingsView.ViewModel(network: network)
+        
+        await viewModel.fetchCategories()
+        
+        XCTAssertTrue(viewModel.categories.isEmpty, "Returned categories should be empty")
+    }
+    
+    /// Test if fetch categories doesn't call the network if categories are already present
+    func testFetchCategories_IfExists_RemainSame() async throws {
+        session = MockSession(error: MockError())
+        network = MockNetworkProvider(session: session)
+        viewModel = SettingsView.ViewModel(network: network)
+        
+        viewModel.categories = MealCategory.sample
+        await viewModel.fetchCategories()
+        
+        XCTAssertEqual(viewModel.categories, MealCategory.sample,"Returned categories should not change")
+    }
 }

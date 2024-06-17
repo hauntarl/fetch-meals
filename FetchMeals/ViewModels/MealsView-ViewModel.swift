@@ -64,9 +64,7 @@ public extension Array where Element == MealItem {
     /// Remove meals with missing data
     func cleaned() -> [Element] {
         self.lazy.filter { item in
-            !item.id.isEmpty
-            && !item.name.isEmpty
-            && item.thumbnailURL != nil
+            !item.id.isEmpty && !item.name.isEmpty
         }
     }
     

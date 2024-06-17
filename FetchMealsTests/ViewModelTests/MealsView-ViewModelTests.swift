@@ -37,7 +37,7 @@ final class MealsView_ViewModelTests: XCTestCase {
         
         switch (viewModel.state) {
         case .success(let got):
-            XCTAssertEqual(got.count, 1, "Only one meal is expected after cleaning")
+            XCTAssertEqual(got.count, 3, "Only one meal is expected after cleaning")
         case .loading:
             XCTFail("ViewState should not be in loading state")
         case .failure(let message):

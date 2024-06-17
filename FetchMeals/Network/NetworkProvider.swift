@@ -63,6 +63,7 @@ public final class NetworkProvider: Network {
         return meal
     }
     
+    /// Executes an HTTP GET request to fetch meal categories.
     public func fetchCategories() async throws -> [MealCategory] {
         let url = try buildURL(
             for: "categories.php",

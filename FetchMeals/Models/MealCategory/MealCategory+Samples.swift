@@ -14,6 +14,10 @@ public extension MealCategory {
         try! JSONDecoder().decode(MealCategoryWrapper.self, from: sampleJSON).categories
     }()
     
+    static var sampleEmptyAndNull: [Self] = {
+        try! JSONDecoder().decode(MealCategoryWrapper.self, from: sampleEmptyAndNullJSON).categories
+    }()
+    
     static let sampleJSON = """
     {
       "categories": [
@@ -32,4 +36,36 @@ public extension MealCategory {
       ]
     }
     """.data(using: .utf8)!
+    
+    static let sampleEmptyAndNullJSON = """
+    {
+      "categories": [
+        {
+          "idCategory": " ",
+          "strCategory": " "
+        },
+        {
+          "idCategory": null,
+          "strCategory": null
+        },
+        {
+          "idCategory": null,
+          "strCategory": "Dessert"
+        },
+        {
+          "idCategory": "0",
+          "strCategory": null
+        },
+        {
+          "idCategory": " ",
+          "strCategory": "Dessert"
+        },
+        {
+          "idCategory": "0",
+          "strCategory": " "
+        }
+      ]
+    }
+    """.data(using: .utf8)!
+
 }

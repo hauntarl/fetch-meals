@@ -93,7 +93,7 @@ public extension Network {
     }
 }
 
-/// Stores different endpoint's base URLs
+/// Stores application's base URLs
 public struct NetworkURL {
     /// Base URL for the meal db API.
     public static let base = URL(string: "https://themealdb.com/api/json/v1/1/")!

@@ -12,7 +12,7 @@ public extension SettingsView {
     /// Responsible for managing the state of `SettingsView` by providing
     /// the currently selected category, sort key, and sort order
     final class ViewModel: ObservableObject {
-        @Published public private(set) var categories: [MealCategory] = []
+        @Published public var categories: [MealCategory] = []
         @Published public var category: MealCategory = MealCategory.dessert
         @Published public var sortKey: MealSortKey
         @Published public var sortOrder: MealSortOrder
@@ -37,7 +37,9 @@ public extension SettingsView {
             guard let response = try? await network.fetchCategories() else {
                 return
             }
-            categories = response
+            categories = response.filter { category in
+                !category.id.isEmpty && !category.name.isEmpty
+            }
         }
     }
 }

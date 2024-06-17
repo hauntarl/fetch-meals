@@ -47,6 +47,15 @@ public struct Meal: Decodable, Equatable {
     
     /// A custom decoder that efficiently maps json response to respective Swift objects.
     /// This is done to clean the response and avoid creation of intermediate data models.
+    ///
+    /// > The constructor is doing a lot post processing on the decoded data, that
+    /// > might impact the performance of the application.
+    /// >
+    /// > But given the scenario, the app will decode only one meal at a time in the
+    /// > meal details view, and this approach makes more sense compared to delegating
+    /// > the data transformation via computed properties, as SwiftUI invokes a view's
+    /// > body property multiple times, which might result in same results getting
+    /// > computed over and over.
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -77,23 +86,17 @@ public struct Meal: Decodable, Equatable {
         let thumbnail = try container
             .decodeIfPresent(String.self, forKey: .strMealThumb)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.thumbnailURL = !thumbnail.isEmpty
-            ? URL(string: "\(thumbnail)/preview")
-            : nil
+        self.thumbnailURL = URL(string: "\(thumbnail)/preview")
         
         let youtube = try container
             .decodeIfPresent(String.self, forKey: .strYoutube)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.youtubeURL = !youtube.isEmpty
-            ? URL(string: youtube)
-            : nil
+        self.youtubeURL = URL(string: youtube)
         
         let source = try container
             .decodeIfPresent(String.self, forKey: .strSource)?
             .trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        self.sourceURL = !source.isEmpty
-            ? URL(string: source)
-            : nil
+        self.sourceURL = URL(string: source)
 
         // Make parsing ingredients and its corresponding quantities scalable
         let dynamicContainer = try decoder.container(keyedBy: DynamicKeys.self)
@@ -112,9 +115,15 @@ public struct Meal: Decodable, Equatable {
             }
         }
      
-        self.ingredients = ingredients.lazy
-            .filter { !$0.value.isEmpty }
-            .map { Ingredient(name: $0.value, quantity: measures[$0.key, default: ""]) }
+        var unique = Set<Ingredient>()
+        for (key, value) in ingredients where !value.isEmpty {
+            let newIngredient = Ingredient(
+                name: value,
+                quantity: measures[key, default: ""]
+            )
+            unique.insert(newIngredient)
+        }
+        self.ingredients = unique.sorted()
     }
     
     private static func formatted(area: String, tags: [String]) -> String {

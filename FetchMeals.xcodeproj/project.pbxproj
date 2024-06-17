@@ -133,12 +133,9 @@
 		FC4AD3282C190DC4000EDBB2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FC4AD3292C190FF1000EDBB2 /* MealItem.swift */,
-				FC4AD32F2C19228E000EDBB2 /* MealItem+Samples.swift */,
-				FC4AD32D2C19171D000EDBB2 /* Meal.swift */,
-				FC4AD32B2C190FFA000EDBB2 /* Meal+Samples.swift */,
-				FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */,
-				FC786E722C1E64D10045D392 /* MealCategory+Samples.swift */,
+				FC734EBA2C1FC66C00A8F2F8 /* MealItem */,
+				FC734EBB2C1FC67900A8F2F8 /* Meal */,
+				FC734EBC2C1FC68E00A8F2F8 /* MealCategory */,
 				FC2C333F2C1DDA69006FDF04 /* MealSortOrder.swift */,
 				FCF45F0B2C1A68520067389C /* ViewState.swift */,
 			);
@@ -164,6 +161,33 @@
 				FC4AD33E2C1955DE000EDBB2 /* MockNetworkProvider.swift */,
 			);
 			path = NetworkTests;
+			sourceTree = "<group>";
+		};
+		FC734EBA2C1FC66C00A8F2F8 /* MealItem */ = {
+			isa = PBXGroup;
+			children = (
+				FC4AD3292C190FF1000EDBB2 /* MealItem.swift */,
+				FC4AD32F2C19228E000EDBB2 /* MealItem+Samples.swift */,
+			);
+			path = MealItem;
+			sourceTree = "<group>";
+		};
+		FC734EBB2C1FC67900A8F2F8 /* Meal */ = {
+			isa = PBXGroup;
+			children = (
+				FC4AD32D2C19171D000EDBB2 /* Meal.swift */,
+				FC4AD32B2C190FFA000EDBB2 /* Meal+Samples.swift */,
+			);
+			path = Meal;
+			sourceTree = "<group>";
+		};
+		FC734EBC2C1FC68E00A8F2F8 /* MealCategory */ = {
+			isa = PBXGroup;
+			children = (
+				FCB497A22C1BD95F00ECDBBC /* MealCategory.swift */,
+				FC786E722C1E64D10045D392 /* MealCategory+Samples.swift */,
+			);
+			path = MealCategory;
 			sourceTree = "<group>";
 		};
 		FC8A73072C1D0FC300E9FCB4 /* Components */ = {
