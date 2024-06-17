@@ -94,7 +94,7 @@ public extension Network {
 }
 
 /// Stores application's base URLs
-public struct NetworkURL {
+public enum NetworkURL {
     /// Base URL for the meal db API.
     public static let base = URL(string: "https://themealdb.com/api/json/v1/1/")!
     /// Base URL for ingredient's thumbnail.
@@ -111,9 +111,9 @@ public enum NetworkError: Error {
 }
 
 /// Encapsulates common HTTP protocol data.
-public struct Http {
+public enum Http {
     /// HTTP request methods.
-    public struct Request {
+    public enum Request {
         public static let get = "GET"
         public static let post = "POST"
         public static let put = "PUT"
@@ -121,7 +121,7 @@ public struct Http {
     }
     
     /// HTTP response codes.
-    public struct Status {
+    public enum Status {
         public static let ok = 200
         public static let created = 201
         public static let noContent = 204
