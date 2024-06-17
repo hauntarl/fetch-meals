@@ -11,6 +11,15 @@ import SwiftUI
 final class NavigationRouter: ObservableObject {
     @Published var path = NavigationPath()
     
+    @ViewBuilder func view(for destination: Destination) -> some View {
+        switch destination {
+        case .mealDetailsView(let id, let name):
+            MealDetailsView(id: id, name: name)
+        case .settingsView:
+            SettingsView()
+        }
+    }
+    
     enum Destination: Hashable {
         case settingsView
         case mealDetailsView(id: String, name: String)

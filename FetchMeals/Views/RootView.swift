@@ -24,6 +24,19 @@ struct RootView: View {
         }
     }
     
+    // App's main content
+    private var content: some View {
+        NavigationStack(path: $router.path) {
+            MealsView()
+                .navigationDestination(
+                    for: NavigationRouter.Destination.self,
+                    destination: router.view(for:)
+                )
+        }
+        .environmentObject(router)
+        .environmentObject(settingsViewModel)
+    }
+    
     private let letters = "Making Fetch Happen..."
         .split(separator: " ")
         .map {
@@ -55,30 +68,6 @@ struct RootView: View {
             withAnimation(.easeOut) {
                 showingMessage = false
             }
-        }
-    }
-    
-    // App's main content
-    private var content: some View {
-        NavigationStack(path: $router.path) {
-            MealsView()
-                .navigationDestination(
-                    for: NavigationRouter.Destination.self,
-                    destination: destination(for:)
-                )
-        }
-        .environmentObject(router)
-        .environmentObject(settingsViewModel)
-    }
-    
-    // App's navigation manager
-    @ViewBuilder
-    private func destination(for value: NavigationRouter.Destination) -> some View {
-        switch value {
-        case .mealDetailsView(let id, let name):
-            MealDetailsView(id: id, name: name)
-        case .settingsView:
-            SettingsView()
         }
     }
 }
