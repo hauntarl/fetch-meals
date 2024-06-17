@@ -55,13 +55,21 @@ A native iOS app that allow users to browse meals from various categories using 
 - Have added error flow to improve the user experience.
 - Kept it simple and clutter-free, followed the Apple's **Human-Interface Guidelines**.
 - Have added basic animations and transitions to improve the overall user experience.
+- Wrote unit tests for view models with **100%** code coverage.
+
+> Note: I've added a small optimization while fetching thumbnails in the `MealsView`.
+> I appended `/preview` path to the retrieved url, [themealdb.com](https://themealdb.com/api.php) returns a 
+> `200x200` image instead of `600x600`.
+>
+> This might result in some inconsistencies as the thumbnail might not load in the `MealsView` but will load in the
+> `MealDetailsView`. It probably happens because the API doesn't have a preview image for all the meals.
 
 ### Assets
 
 - [App icon](https://www.pexels.com/photo/close-up-photo-of-dessert-on-top-of-the-jar-2638026/): Photo by *Anna Tukhfatullina* Food Photographer/Stylist.
 - Accent color `#FBA91A`: Orangish-yellow from [fetch.com](https://fetch.com/)'s logo
 
-> Notes:
+> Disclosure:
 >
 > I applied to Fetch a few months back and received a take-home assessment, but I didn't proceed further
 > in the interview process due to missing some key requirements in my submission.
