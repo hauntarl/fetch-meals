@@ -30,15 +30,16 @@ extension MealDetailsView {
                 }
                 .frame(width: 25, height: 25)
                 
-                Text(ingredient.name)
-                    .bold()
-                
-                Spacer()
-                
-                Text(ingredient.quantity)
+                VStack(alignment: .leading) {
+                    Text(ingredient.name)
+                        .font(.subheadline)
+                        .bold()
+                    
+                    Text(ingredient.quantity)
+                        .font(.caption)
+                }
             }
         }
-        .font(.subheadline)
     }
     
     @ViewBuilder
